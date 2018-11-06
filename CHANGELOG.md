@@ -7,6 +7,8 @@ CHANGES:
 * Added 'exit code' mode - sets the exit code to be the number of real upgrades available. ([@TGWolf][])
 * Added 'silent' mode so no output it given (designed to work with exit code above). ([@TGWolf][])
 * Remove type=str from command line parameters as this is the default for python. ([@TGWolf][])
+* Upgrade Available is now displayed as True/False instead of 1/0. ([@TGWolf][])
+* README.md added to each script to give more detailed overview. ([@TGWolf][])
 
 ## 1.0.1 (November 6, 2018)
 

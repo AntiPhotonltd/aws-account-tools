@@ -27,9 +27,17 @@ optional arguments:
 
 ## Information Displayed
 
+The following information is displayed in table form for all the RDS instances located.
+
 ```
-+---------------+----------------+--------+----------------------+---------------------+-------------------+-------------------+--------+----------------+
-| Instance Name | Instance Class | Status | Availability Zone(s) | Publicly Accessible | Allocated Storage | Storage Encrypted | Engine | Engine Version |
-+---------------+----------------+--------+----------------------+---------------------+-------------------+-------------------+--------+----------------+
+Instance Name - instance identifier / name
+Instance Class - instance size
+Status - current instane status
+Availability Zone(s) - region(s)
+Publicly Accessible - True/False
+Allocated Storage - Size in GB
+Storage Encrypted - True/False
+Engine - database engine (postgres/mysql etc)
+Engine Version - current version
 
 ```

@@ -12,15 +12,15 @@ A collection of simply tools for managing and auditing AWS.
 
 ## Elastic Beanstalks
 
-| Name | Description |
-| --- | --- |
-| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade available for your Elastic Beanstalk. |
+| Name | Description | README.md |
+| --- | --- | --- |
+| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade available for your Elastic Beanstalk. | [README.md](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)
 
 
 ## RDS
 
-| Name | Description |
-| --- | --- | 
-| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade available for your RDS. |
-| [list-all-rds-instances.py](src/rds/list-all-rds-instances/list-all-rds-instances.py ) | List all available RDS instances and some details about them. |
+| Name | Description | README.md |
+| --- | --- | --- |
+| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade available for your RDS. | [README.md](src/rds/check-for-rds-upgrade/README.md) |
+| [list-all-rds-instances.py](src/rds/list-all-rds-instances/list-all-rds-instances.py) | List all available RDS instances and some details about them. |  [README.md](src/rds/list-all-rds-instances/README.md) |
 

@@ -123,11 +123,11 @@ def get_possible_upgrades(client, current_versions, all_databases):
             upgrade_available = False
 
         if in_place_upgrade_available or upgrade_available:
-            is_upgrade_available = 1
+            is_upgrade_available = True
         else:
-            is_upgrade_available = 0
+            is_upgrade_available = False
 
-        if is_upgrade_available == 1:
+        if is_upgrade_available == True:
             real_upgrades += 1
 
         if all_databases or is_upgrade_available == 1:

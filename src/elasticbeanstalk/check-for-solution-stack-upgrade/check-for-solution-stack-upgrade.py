@@ -128,12 +128,12 @@ def get_possible_upgrades(latest_version, current_versions, all_beanstalks):
 
     for version in current_versions:
         if cmp_version(version['LatestPlatformVersion'], version['PlatformVersion']) > 0:
-            upgrade_available = 1
+            upgrade_available = True
             real_upgrades += 1
         else:
             upgrade_available = 0
 
-        if all_beanstalks or upgrade_available == 1:
+        if all_beanstalks or upgrade_available == True:
             upgrades.append({
                              'ApplicationName': version['ApplicationName'],
                              'EnvironmentName': version['EnvironmentName'],
