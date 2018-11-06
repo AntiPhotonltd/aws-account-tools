@@ -20,15 +20,18 @@ def main(cmdline=None):
     The main function. This takes the command line arguments provided and parse them.
     """
 
-    client = boto3.client('elasticbeanstalk')
-
     parser = make_parser()
 
     args = parser.parse_args(cmdline)
 
-    available_versions, latest_version = get_available_versions(client, args.platform_name, args.os_version, args.verbose)
-    current_versions = get_current_versions(client, latest_version, args.verbose)
-    possible_upgrades = get_possible_upgrades(latest_version, current_versions)
+    if args.region:
+        client = boto3.client('elasticbeanstalk', region_name=args.region)
+    else:
+        client = boto3.client('elasticbeanstalk')
+
+    available_versions, latest_version = get_available_versions(client, args.platform_name, args.os_version)
+    current_versions = get_current_versions(client, latest_version)
+    possible_upgrades = get_possible_upgrades(latest_version, current_versions, args.all_beanstalks)
 
     display_upgrades(possible_upgrades)
 
@@ -41,35 +44,26 @@ def make_parser():
 
     parser = argparse.ArgumentParser(description='Check Soution Stack Version')
 
+    parser.add_argument('-a', '--all-beanstalks', help='List all beanstalks (even if not upgradable)', action='store_true')
     parser.add_argument('-o', '--os-version', type=str, help='Operating system version')
     parser.add_argument('-p', '--platform-name', type=str, help='Current platform stack name', required=True)
-    parser.add_argument('-v', '--verbose', help='Verbose output', action='store_true')
+    parser.add_argument('-r', '--region', type=str, help='The aws region')
     return parser
 
 
-def get_available_versions(client, platform_name, os_version, verbose):
+def get_available_versions(client, platform_name, os_version):
 
     """
-    Retrieve the actual list
+    Get the list of available versions for a given platform name
     """
 
     available_versions = []
-
-    if verbose:
-        if os_version:
-            print("Retrieving details for %s (%s)" % (platform_name, os_version))
-        else:
-            print("Retrieving details for %s" % platform_name)
 
     response = client.list_platform_versions(Filters=[{
                                                        'Type': 'PlatformName',
                                                        'Operator': 'contains',
                                                        'Values': [platform_name]
                                                       }])
-
-    if verbose:
-        print("Available Platform Versions:")
-        print("Search: %s:" % platform_name)
 
     for result in response['PlatformSummaryList']:
         if not os_version or result['OperatingSystemVersion'] == os_version:
@@ -79,9 +73,9 @@ def get_available_versions(client, platform_name, os_version, verbose):
     return available_versions, available_versions[0]
 
 
-def get_current_versions(client, latest_version, verbose):
+def get_current_versions(client, latest_version):
     """
-    Stuff
+    Get the current list of beanstalks and their versions
     """
     current_versions = []
 
@@ -91,9 +85,7 @@ def get_current_versions(client, latest_version, verbose):
         arn_parts = str(result['PlatformArn']).split('/')
         current_versions.append({
             'ApplicationName': result['ApplicationName'],
-            'EnvironmentId': result['EnvironmentId'],
             'EnvironmentName': result['EnvironmentName'],
-            'PlatformArn': result['PlatformArn'],
             'PlatformVersion': arn_parts[-1],
             'LatestPlatformVersion': latest_version
         })
@@ -101,22 +93,34 @@ def get_current_versions(client, latest_version, verbose):
     return current_versions
 
 
-def get_possible_upgrades(latest_version, current_versions):
+def get_possible_upgrades(latest_version, current_versions, all_beanstalks):
     """
-    more stuff
+    Calculate which beanstalks can be upgraded
     """
 
     upgrades = []
 
     for version in current_versions:
         if version['PlatformVersion'] != version['LatestPlatformVersion']:
-            upgrades.append(version)
+            upgrade_available = 1
+        else:
+            upgrade_available = 0
+
+        if all_beanstalks or upgrade_available == 1:
+            upgrades.append({
+                             'ApplicationName': version['ApplicationName'],
+                             'EnvironmentName': version['EnvironmentName'],
+                             'PlatformVersion': version['PlatformVersion'],
+                             'LatestPlatformVersion': version['LatestPlatformVersion'],
+                             'UpgradeAvailable': upgrade_available
+                            })
+
     return upgrades
 
 
 def display_upgrades(current_upgrades):
     """
-    stuff
+    Display a list of stacks that have avilable upgrades
     """
 
     x = PrettyTable()
@@ -126,8 +130,7 @@ def display_upgrades(current_upgrades):
                      'Environment Name',
                      'Current Platform Version',
                      'Latest Platform Version',
-                     'Environment Id',
-                     'Platform Arn'
+                     'Upgrade Available',
                     ]
 
     for upgrade in current_upgrades:
@@ -136,10 +139,10 @@ def display_upgrades(current_upgrades):
                    upgrade['EnvironmentName'],
                    upgrade['PlatformVersion'],
                    upgrade['LatestPlatformVersion'],
-                   upgrade['EnvironmentId'],
-                   upgrade['PlatformArn']
+                   upgrade['UpgradeAvailable']
                   ])
 
+    x.sortby = 'Environment Name'
     print(x)
 
 

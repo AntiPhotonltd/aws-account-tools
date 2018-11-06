@@ -14,6 +14,13 @@ A collection of simply tools for managing and auditing AWS.
 
 | Name | Description |
 | --- | --- |
-| [check-solution-stack-version.py](src/elasticbeanstalk/check-solution-stack-version/check-solution-stack-version.sh) | Check to see if there is an upgrade aviailable for your Elastic Beanstalk. |
+| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade aviailable for your Elastic Beanstalk. |
+
+
+## RDS
+
+| Name | Description |
+| --- | --- |
+| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade aviailable for your RDS. |
 
 
