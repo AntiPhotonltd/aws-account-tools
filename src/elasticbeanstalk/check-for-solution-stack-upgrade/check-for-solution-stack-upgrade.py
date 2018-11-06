@@ -48,10 +48,15 @@ def main(cmdline=None):
 
     available_versions, latest_version = get_available_versions(client, args.platform_name, args.os_version)
     current_versions = get_current_versions(client, latest_version)
-    possible_upgrades = get_possible_upgrades(latest_version, current_versions, args.all_beanstalks)
+    possible_upgrades, real_upgrades = get_possible_upgrades(latest_version, current_versions, args.all_beanstalks)
 
-    display_upgrades(possible_upgrades)
+    if not args.silent:
+        display_upgrades(possible_upgrades)
 
+    if args.exit_code:
+        sys.exit(real_upgrades)
+    else:
+        sys.exit(0)
 
 def make_parser():
 
@@ -59,12 +64,14 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='Check Soution Stack Version')
+    parser = argparse.ArgumentParser(description='Check for Soution Stack Upgrades')
 
     parser.add_argument('-a', '--all-beanstalks', help='List all beanstalks (even if not upgradable)', action='store_true')
+    parser.add_argument('-e', '--exit-code', help='Set exit code to number of available upgrades', action='store_true')
     parser.add_argument('-o', '--os-version', type=str, help='Operating system version')
     parser.add_argument('-p', '--platform-name', type=str, help='Current platform stack name', required=True)
     parser.add_argument('-r', '--region', type=str, help='The aws region')
+    parser.add_argument('-s', '--silent', help='Surpress all output', action='store_true')
     return parser
 
 
@@ -116,10 +123,12 @@ def get_possible_upgrades(latest_version, current_versions, all_beanstalks):
     """
 
     upgrades = []
+    real_upgrades = 0
 
     for version in current_versions:
         if cmp_version(version['LatestPlatformVersion'], version['PlatformVersion']) > 0:
             upgrade_available = 1
+            real_upgrades += 1
         else:
             upgrade_available = 0
 
@@ -132,7 +141,7 @@ def get_possible_upgrades(latest_version, current_versions, all_beanstalks):
                              'UpgradeAvailable': upgrade_available
                             })
 
-    return upgrades
+    return upgrades, real_upgrades
 
 
 def display_upgrades(current_upgrades):
@@ -140,27 +149,27 @@ def display_upgrades(current_upgrades):
     Display a list of stacks that have avilable upgrades
     """
 
-    x = PrettyTable()
+    table = PrettyTable()
 
-    x.field_names = [
-                     'Application Name',
-                     'Environment Name',
-                     'Current Platform Version',
-                     'Latest Platform Version',
-                     'Upgrade Available',
-                    ]
+    table.field_names = [
+                         'Application Name',
+                         'Environment Name',
+                         'Current Platform Version',
+                         'Latest Platform Version',
+                         'Upgrade Available',
+                        ]
 
     for upgrade in current_upgrades:
-        x.add_row([
-                   upgrade['ApplicationName'],
-                   upgrade['EnvironmentName'],
-                   upgrade['PlatformVersion'],
-                   upgrade['LatestPlatformVersion'],
-                   upgrade['UpgradeAvailable']
-                  ])
+        table.add_row([
+                       upgrade['ApplicationName'],
+                       upgrade['EnvironmentName'],
+                       upgrade['PlatformVersion'],
+                       upgrade['LatestPlatformVersion'],
+                       upgrade['UpgradeAvailable']
+                      ])
 
-    x.sortby = 'Environment Name'
-    print(x)
+    table.sortby = 'Environment Name'
+    print(table)
 
 
 if __name__ == "__main__":

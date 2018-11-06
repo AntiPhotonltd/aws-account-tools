@@ -47,9 +47,15 @@ def main(cmdline=None):
         client = boto3.client('rds')
 
     current_versions = get_current_versions(client)
-    possible_upgrades = get_possible_upgrades(client, current_versions, args.all_databases)
+    possible_upgrades, real_upgrades = get_possible_upgrades(client, current_versions, args.all_databases)
 
-    display_upgrades(possible_upgrades)
+    if not args.silent:
+        display_upgrades(possible_upgrades)
+
+    if args.exit_code:
+        sys.exit(real_upgrades)
+    else:
+        sys.exit(0)
 
 
 def make_parser():
@@ -58,11 +64,13 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='Check Soution Stack Version')
+    parser = argparse.ArgumentParser(description='Check for RDS Upgrades')
 
     parser.add_argument('-a', '--all-databases', help='List all databases (even if not upgradable)', action='store_true')
+    parser.add_argument('-e', '--exit-code', help='Set exit code to number of available upgrades', action='store_true')
     parser.add_argument('-r', '--region', type=str, help='The aws region')
-    parser.add_argument('-v', '--verbose', help='Verbose output', action='store_true')
+    parser.add_argument('-s', '--silent', help='Surpress all output', action='store_true')
+
     return parser
 
 
@@ -91,6 +99,7 @@ def get_possible_upgrades(client, current_versions, all_databases):
     """
 
     possible_upgrades = []
+    real_upgrades = 0
 
     for instance in current_versions:
         latest_in_place_response = client.describe_db_engine_versions(Engine=instance['Engine'], EngineVersion=instance['EngineVersion'])
@@ -118,6 +127,9 @@ def get_possible_upgrades(client, current_versions, all_databases):
         else:
             is_upgrade_available = 0
 
+        if is_upgrade_available == 1:
+            real_upgrades += 1
+
         if all_databases or is_upgrade_available == 1:
             possible_upgrades.append({
                                        'InstanceName': instance['InstanceName'],
@@ -127,7 +139,8 @@ def get_possible_upgrades(client, current_versions, all_databases):
                                        'LatestUpgrade': latest_upgrade,
                                        'UpgradeAvailable': is_upgrade_available
                                      })
-    return possible_upgrades
+    return possible_upgrades, real_upgrades
+
 
 
 def display_upgrades(current_upgrades):
