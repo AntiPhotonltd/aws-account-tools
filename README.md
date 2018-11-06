@@ -22,5 +22,5 @@ A collection of simply tools for managing and auditing AWS.
 | Name | Description |
 | --- | --- | 
 | [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade available for your RDS. |
-
+| [list-all-rds-instances.py](src/rds/list-all-rds-instances/list-all-instances.py ) | List all available RDS instances and some details about them. |
 

@@ -142,35 +142,34 @@ def get_possible_upgrades(client, current_versions, all_databases):
     return possible_upgrades, real_upgrades
 
 
-
 def display_upgrades(current_upgrades):
     """
     Display the databases which can be upgraded (or all if flat is set)
     """
 
-    x = PrettyTable()
+    table = PrettyTable()
 
-    x.field_names = [
-                     'Instance Name',
-                     'Engine',
-                     'Engine Version',
-                     'Latest In Place Upgrade',
-                     'Latest Upgrade',
-                     'Upgrade Available'
-                    ]
+    table.field_names = [
+                         'Instance Name',
+                         'Engine',
+                         'Engine Version',
+                         'Latest In Place Upgrade',
+                         'Latest Upgrade',
+                         'Upgrade Available'
+                        ]
 
     for upgrade in current_upgrades:
-        x.add_row([
-                   upgrade['InstanceName'],
-                   upgrade['Engine'],
-                   upgrade['EngineVersion'],
-                   upgrade['LatestInPlaceUpgrade'],
-                   upgrade['LatestUpgrade'],
-                   upgrade['UpgradeAvailable']
-                  ])
+        table.add_row([
+                       upgrade['InstanceName'],
+                       upgrade['Engine'],
+                       upgrade['EngineVersion'],
+                       upgrade['LatestInPlaceUpgrade'],
+                       upgrade['LatestUpgrade'],
+                       upgrade['UpgradeAvailable']
+                      ])
 
-    x.sortby = 'Instance Name'
-    print(x)
+    table.sortby = 'Instance Name'
+    print(table)
 
 
 if __name__ == "__main__":
