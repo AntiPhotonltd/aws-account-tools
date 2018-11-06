@@ -68,7 +68,7 @@ def make_parser():
 
     parser.add_argument('-a', '--all-databases', help='List all databases (even if not upgradable)', action='store_true')
     parser.add_argument('-e', '--exit-code', help='Set exit code to number of available upgrades', action='store_true')
-    parser.add_argument('-r', '--region', type=str, help='The aws region')
+    parser.add_argument('-r', '--region', help='The aws region')
     parser.add_argument('-s', '--silent', help='Surpress all output', action='store_true')
 
     return parser

@@ -46,7 +46,7 @@ def make_parser():
 
     parser = argparse.ArgumentParser(description='List all RDS Instances')
 
-    parser.add_argument('-r', '--region', type=str, help='The aws region')
+    parser.add_argument('-r', '--region', help='The aws region')
     return parser
 
 

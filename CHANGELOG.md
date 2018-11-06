@@ -6,6 +6,7 @@ CHANGES:
 * Tidy up of variable and function names to give them more meaning. ([@TGWolf][])
 * Added 'exit code' mode - sets the exit code to be the number of real upgrades available. ([@TGWolf][])
 * Added 'silent' mode so no output it given (designed to work with exit code above). ([@TGWolf][])
+* Remove type=str from command line parameters as this is the default for python. ([@TGWolf][])
 
 ## 1.0.1 (November 6, 2018)
 

@@ -69,9 +69,9 @@ def make_parser():
 
     parser.add_argument('-a', '--all-beanstalks', help='List all beanstalks (even if not upgradable)', action='store_true')
     parser.add_argument('-e', '--exit-code', help='Set exit code to number of available upgrades', action='store_true')
-    parser.add_argument('-o', '--os-version', type=str, help='Operating system version')
-    parser.add_argument('-p', '--platform-name', type=str, help='Current platform stack name', required=True)
-    parser.add_argument('-r', '--region', type=str, help='The aws region')
+    parser.add_argument('-o', '--os-version', help='Operating system version')
+    parser.add_argument('-p', '--platform-name', help='Current platform stack name', required=True)
+    parser.add_argument('-r', '--region', help='The aws region')
     parser.add_argument('-s', '--silent', help='Surpress all output', action='store_true')
     return parser
 
