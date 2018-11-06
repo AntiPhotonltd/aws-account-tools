@@ -1,0 +1,5 @@
+pycodestyle
+requests>=2.20.0
+boto3==1.7.40
+prettytable==0.7.2
+
