@@ -122,9 +122,8 @@ def get_current_versions(client):
               Attempt to speed things up with a little bit of caching - only relookup details if the ARN changes
             """
             os_version, platform_name, platform_version = get_operating_system_version(client, result['PlatformArn'])
+            latest_version = get_latest_available_version(client, platform_name, os_version)
             previous_arn = result['PlatformArn']
-
-        latest_version = get_latest_available_version(client, platform_name, os_version)
 
         current_versions.append({
             'ApplicationName': result['ApplicationName'],
