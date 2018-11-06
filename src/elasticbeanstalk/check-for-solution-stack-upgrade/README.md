@@ -42,7 +42,6 @@ Environment Name - The name of the environment
 Current Platform Version - Current version of the platform
 Latest Platform Version - Latest version available
 Upgrade Available - True/False
-
 ```
 
 

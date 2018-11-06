@@ -39,5 +39,4 @@ Allocated Storage - Size in GB
 Storage Encrypted - True/False
 Engine - database engine (postgres/mysql etc)
 Engine Version - current version
-
 ```
