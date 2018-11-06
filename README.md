@@ -12,15 +12,15 @@ A collection of simply tools for managing and auditing AWS.
 
 ## Elastic Beanstalks
 
-| Name | Description |
-| --- | --- |
-| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade aviailable for your Elastic Beanstalk. |
+| Name | Description | Example Usage | 
+| --- | --- | --- |
+| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade available for your Elastic Beanstalk. | ./check-for-solution-stack-upgrade.py -p "Python 3.4 running on 64bit Amazon Linux" -o "2018.03" |
 
 
 ## RDS
 
 | Name | Description |
 | --- | --- |
-| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade aviailable for your RDS. |
+| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade available for your RDS. | ./check-for-rds-upgrade.py |
 
 
