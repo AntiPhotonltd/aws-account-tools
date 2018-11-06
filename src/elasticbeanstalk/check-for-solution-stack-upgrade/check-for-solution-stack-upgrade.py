@@ -6,6 +6,8 @@ This is a simple script for checking if there are solution stack upgrades availa
 Example Usage:
 
      ./check-for-solution-stack-upgrade.py -p "Python 3.4 running on 64bit Amazon Linux" -o "2018.03"
+
+Based on an original idea by https://github.com/adamdodev
 """
 
 from __future__ import print_function
