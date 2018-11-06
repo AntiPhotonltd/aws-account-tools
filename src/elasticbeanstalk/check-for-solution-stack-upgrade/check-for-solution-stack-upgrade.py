@@ -2,6 +2,10 @@
 
 """
 This is a simple script for checking if there are solution stack upgrades available.
+
+Example Usage:
+
+     ./check-for-solution-stack-upgrade.py -p "Python 3.4 running on 64bit Amazon Linux" -o "2018.03"
 """
 
 from __future__ import print_function

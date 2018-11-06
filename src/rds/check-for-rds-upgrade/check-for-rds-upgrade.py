@@ -2,6 +2,10 @@
 
 """
 This is a simple script for checking if there are upgrades available for your RDS.
+
+Example Usage:
+
+    ./check-for-rds-upgrade.py
 """
 
 from __future__ import print_function
