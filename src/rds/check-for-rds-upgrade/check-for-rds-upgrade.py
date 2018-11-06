@@ -127,10 +127,10 @@ def get_possible_upgrades(client, current_versions, all_databases):
         else:
             is_upgrade_available = False
 
-        if is_upgrade_available == True:
+        if is_upgrade_available:
             real_upgrades += 1
 
-        if all_databases or is_upgrade_available == 1:
+        if all_databases or is_upgrade_available:
             possible_upgrades.append({
                                        'InstanceName': instance['InstanceName'],
                                        'Engine': instance['Engine'],

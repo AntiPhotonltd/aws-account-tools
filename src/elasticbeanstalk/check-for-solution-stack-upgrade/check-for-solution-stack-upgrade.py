@@ -131,9 +131,9 @@ def get_possible_upgrades(latest_version, current_versions, all_beanstalks):
             upgrade_available = True
             real_upgrades += 1
         else:
-            upgrade_available = 0
+            upgrade_available = False
 
-        if all_beanstalks or upgrade_available == True:
+        if all_beanstalks or upgrade_available:
             upgrades.append({
                              'ApplicationName': version['ApplicationName'],
                              'EnvironmentName': version['EnvironmentName'],
