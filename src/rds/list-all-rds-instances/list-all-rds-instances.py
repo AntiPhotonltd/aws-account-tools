@@ -5,7 +5,7 @@ This is a simple script for checking if there are upgrades available for your RD
 
 Example Usage:
 
-    ./check-all-rds-instances.py
+    ./list-all-rds-instances.py
 """
 
 from __future__ import print_function
