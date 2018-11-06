@@ -14,11 +14,21 @@ from __future__ import print_function
 
 import argparse
 import boto3
-import sys
+import re
 import requests
+import sys
 
 from prettytable import PrettyTable
 
+
+def cmp_version(version1, version2):
+    """
+    Compare 2 version strings
+    """
+
+    def normalize(v):
+        return [int(x) for x in re.sub(r'(\.0+)*$','', v).split(".")]
+    return cmp(normalize(version1), normalize(version2))
 
 def main(cmdline=None):
 
@@ -97,7 +107,7 @@ def get_possible_upgrades(client, current_versions, all_databases):
 
         latest_upgrade = latest_response['DBEngineVersions'][-1]['EngineVersion']
 
-        if latest_upgrade != instance['EngineVersion']:
+        if cmp_version(latest_upgrade, instance['EngineVersion']) > 0:
             upgrade_available = True
         else:
             upgrade_available = False

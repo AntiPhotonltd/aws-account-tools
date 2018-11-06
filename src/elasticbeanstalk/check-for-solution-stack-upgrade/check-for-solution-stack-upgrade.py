@@ -14,11 +14,21 @@ from __future__ import print_function
 
 import argparse
 import boto3
-import sys
+import re
 import requests
+import sys
 
 from prettytable import PrettyTable
 
+
+def cmp_version(version1, version2):
+    """
+    Compare 2 version strings
+    """
+
+    def normalize(v):
+        return [int(x) for x in re.sub(r'(\.0+)*$','', v).split(".")]
+    return cmp(normalize(version1), normalize(version2))
 
 def main(cmdline=None):
 
@@ -107,7 +117,7 @@ def get_possible_upgrades(latest_version, current_versions, all_beanstalks):
     upgrades = []
 
     for version in current_versions:
-        if version['PlatformVersion'] != version['LatestPlatformVersion']:
+        if cmp_version(version['LatestPlatformVersion'], version['PlatformVersion']) > 0:
             upgrade_available = 1
         else:
             upgrade_available = 0
