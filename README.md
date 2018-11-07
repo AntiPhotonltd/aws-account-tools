@@ -15,6 +15,7 @@ A collection of simply tools for managing and auditing AWS.
 | Name | Description | README.md |
 | --- | --- | --- |
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade available for your Elastic Beanstalk. | [README.md](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)
+| [list-all-beanstalks.py](src/elasticbeanstalk/list-all-beanstalks/list-all-beanstalks.py) | List all of the beanstalks and some details about them. | [README.md](src/elasticbeanstalk/list-all-beanstalks/README.md)
 
 
 ## RDS

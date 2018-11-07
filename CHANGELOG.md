@@ -1,3 +1,10 @@
+## 1.0.3 (November 7, 2018)
+
+CHANGES:
+
+* Added a new script list-all-beanstalks.py. ([@TGWolf][])
+* Added better error detection to all scripts. ([@TGWolf][])
+
 ## 1.0.2 (November 6, 2018)
 
 CHANGES:

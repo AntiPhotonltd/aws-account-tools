@@ -18,7 +18,13 @@ import re
 import requests
 import sys
 
+from botocore.exceptions import ClientError, EndpointConnectionError
 from prettytable import PrettyTable
+
+empty_string = ''
+unknown_string = 'Unknown'
+unknown_version = '0.0.0'
+unknown_int = 0
 
 
 def cmp_version(version1, version2):
@@ -81,17 +87,61 @@ def get_current_versions(client):
 
     current_versions = []
 
-    response = client.describe_db_instances()
-
-    for instance in response['DBInstances']:
-        current_versions.append({
-                                 'InstanceName': instance['DBInstanceIdentifier'],
-                                 'Engine': instance['Engine'],
-                                 'EngineVersion': instance['EngineVersion'],
-                                })
-
+    try:
+        response = client.describe_db_instances()
+    except EndpointConnectionError as e:
+        print("ERROR: %s (Probably an invalid region!)" % e)
+    except Exception as e:
+        print("Unknown error: " + str(e))
+    else:
+        if 'DBInstances' in response:
+            for instance in response['DBInstances']:
+                current_versions.append({
+                                         'InstanceName': instance['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in instance else unknown_string,
+                                         'Engine': instance['Engine'] if 'Engine' in instance else unknown_string,
+                                         'EngineVersion': instance['EngineVersion'] if 'EngineVersion' in instance else unknown_string,
+                                        })
     return current_versions
 
+
+def get_latest_in_place_version(client, instance):
+    """
+    Get the latest in place upgrade version
+    """
+
+    latest_in_place_list = []
+
+    try:
+        latest_in_place_response = client.describe_db_engine_versions(Engine=instance['Engine'], EngineVersion=instance['EngineVersion'])
+    except Exception as e:
+        print("Unknown error: " + str(e))
+    else:
+        latest_in_place_list = latest_in_place_response['DBEngineVersions'][0]['ValidUpgradeTarget']
+
+    if latest_in_place_list:
+        latest_in_place_upgrade = latest_in_place_list[-1]['EngineVersion']
+        in_place_upgrade_available = True
+    else:
+        latest_in_place_upgrade = instance['EngineVersion']
+        in_place_upgrade_available = False
+
+    return latest_in_place_upgrade, in_place_upgrade_available
+
+
+def get_latest_upgrade(client, instance):
+    """
+    Get the latest full upgrade version
+    """
+    latest_upgrade = unknown_version
+
+    try:
+        latest_response = client.describe_db_engine_versions(Engine=instance['Engine'])
+    except Exception as e:
+        print("Unknown error: " + str(e))
+    else:
+        latest_upgrade = latest_response['DBEngineVersions'][-1]['EngineVersion']
+
+    return latest_upgrade
 
 def get_possible_upgrades(client, current_versions, all_databases):
     """
@@ -102,43 +152,25 @@ def get_possible_upgrades(client, current_versions, all_databases):
     real_upgrades = 0
 
     for instance in current_versions:
-        latest_in_place_response = client.describe_db_engine_versions(Engine=instance['Engine'], EngineVersion=instance['EngineVersion'])
+        latest_in_place_upgrade, in_place_upgrade_available = get_latest_in_place_version(client, instance)
+        latest_upgrade = get_latest_upgrade(client, instance)
 
-        latest_in_place_list = latest_in_place_response['DBEngineVersions'][0]['ValidUpgradeTarget']
-
-        if latest_in_place_list:
-            latest_in_place_upgrade = latest_in_place_list[-1]['EngineVersion']
-            in_place_upgrade_available = True
-        else:
-            latest_in_place_upgrade = instance['EngineVersion']
-            in_place_upgrade_available = False
-
-        latest_response = client.describe_db_engine_versions(Engine=instance['Engine'])
-
-        latest_upgrade = latest_response['DBEngineVersions'][-1]['EngineVersion']
-
-        if cmp_version(latest_upgrade, instance['EngineVersion']) > 0:
-            upgrade_available = True
-        else:
-            upgrade_available = False
-
-        if in_place_upgrade_available or upgrade_available:
-            is_upgrade_available = True
-        else:
-            is_upgrade_available = False
+        upgrade_available = True if cmp_version(latest_upgrade, instance['EngineVersion']) > 0 else False
+        is_upgrade_available = True if in_place_upgrade_available or upgrade_available else False
 
         if is_upgrade_available:
-            real_upgrades += 1
+          real_upgrades += 1
 
         if all_databases or is_upgrade_available:
             possible_upgrades.append({
-                                       'InstanceName': instance['InstanceName'],
-                                       'Engine': instance['Engine'],
-                                       'EngineVersion': instance['EngineVersion'],
-                                       'LatestInPlaceUpgrade': latest_in_place_upgrade,
-                                       'LatestUpgrade': latest_upgrade,
-                                       'UpgradeAvailable': is_upgrade_available
-                                     })
+                                      'InstanceName': instance['InstanceName'],
+                                      'Engine': instance['Engine'],
+                                      'EngineVersion': instance['EngineVersion'],
+                                      'LatestInPlaceUpgrade': latest_in_place_upgrade,
+                                      'LatestUpgrade': latest_upgrade,
+                                      'UpgradeAvailable': is_upgrade_available
+                                    })
+
     return possible_upgrades, real_upgrades
 
 

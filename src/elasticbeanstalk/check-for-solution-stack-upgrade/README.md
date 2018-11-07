@@ -32,10 +32,10 @@ optional arguments:
 The following information is displayed in table form for all the beanstalks located.
 
 ```
-Application Name - Elastic beanstalk appliation name
-Environment Name - The name of the environment
-Solution Stack - The name of the solution stack in use
-Current Version - Current version of the platform
-Latest Version - Latest version available
-Upgrade Available - True/False
+Application Name
+Environment Name
+Solution Stack
+Current Version
+Latest Version
+Upgrade Available
 ```

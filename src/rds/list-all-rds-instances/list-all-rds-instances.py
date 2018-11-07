@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for checking if there are upgrades available for your RDS.
+This is a simple script for listing all available RDS instances.
 
 Example Usage:
 
@@ -15,7 +15,13 @@ import boto3
 import requests
 import sys
 
+from botocore.exceptions import ClientError, EndpointConnectionError
 from prettytable import PrettyTable
+
+empty_string = ''
+unknown_string = 'Unknown'
+unknown_version = '0.0.0'
+unknown_int = 0
 
 
 def main(cmdline=None):
@@ -34,7 +40,6 @@ def main(cmdline=None):
         client = boto3.client('rds')
 
     rds_instances = get_all_rds_instances(client)
-
     display_rds_instances(rds_instances)
 
 
@@ -57,33 +62,41 @@ def get_all_rds_instances(client):
 
     rds_instances = []
 
-    response = client.describe_db_instances()
+    try:
+        response = client.describe_db_instances()
+    except EndpointConnectionError as e:
+        print("ERROR: %s (Probably an invalid region!)" % e)
+    except Exception as e:
+        print("Unknown error: " + str(e))
+    else:
+        if 'DBInstances' in response:
+            for instance in response['DBInstances']:
+                if 'AvailabilityZone' in instance:
+                    if 'SecondaryAvailabilityZone' in instance:
+                        AZS = '%s & %s' % (instance['AvailabilityZone'], instance['SecondaryAvailabilityZone'])
+                    else:
+                        AZS = instance['AvailabilityZone']
+                else:
+                    AZS = unknown_string
 
-    if 'DBInstances' in response:
-        for instance in response['DBInstances']:
-            if 'SecondaryAvailabilityZone' in instance:
-                    AZS = '%s & %s' % (instance['AvailabilityZone'], instance['SecondaryAvailabilityZone'])
-            else:
-                    AZS = instance['AvailabilityZone']
-
-            rds_instances.append({
-                                  'InstanceName': instance['DBInstanceIdentifier'],
-                                  'InstanceClass': instance['DBInstanceClass'],
-                                  'Status': instance['DBInstanceStatus'],
-                                  'AvailabilityZone': AZS,
-                                  'PubliclyAccessible': instance['PubliclyAccessible'],
-                                  'AllocatedStorage': instance['AllocatedStorage'],
-                                  'StorageEncrypted': instance['StorageEncrypted'],
-                                  'Engine': instance['Engine'],
-                                  'EngineVersion': instance['EngineVersion'],
-                                 })
-
+                rds_instances.append({
+                                      'InstanceName': instance['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in instance else unknown_string,
+                                      'InstanceClass': instance['DBInstanceClass'] if 'DBInstanceClass' in instance else unknown_string,
+                                      'Status': instance['DBInstanceStatus'] if 'Status' in instance else unknown_string,
+                                      'AvailabilityZone': AZS,
+                                      'PubliclyAccessible': instance['PubliclyAccessible'] if 'PubliclyAccessible' in instance else unknown_string,
+                                      'AllocatedStorage': instance['AllocatedStorage'] if 'AllocatedStorage' in instance else unknown_string,
+                                      'StorageEncrypted': instance['StorageEncrypted'] if 'StorageEncrypted' in instance else unknown_string,
+                                      'Engine': instance['Engine'] if 'Engine' in instance else unknown_string,
+                                      'EngineVersion': instance['EngineVersion'] if 'EngineVersion' in instance else unknown_string,
+                                      'PerformanceInsightsEnabled': instance['PerformanceInsightsEnabled'] if 'PerformanceInsightsEnabled' in instance else unknown_string,
+                                     })
     return rds_instances
 
 
 def display_rds_instances(rds_instances):
     """
-    Display the databases which can be upgraded (or all if flat is set)
+    Display all the RDS instances
     """
 
     table = PrettyTable()
@@ -97,7 +110,8 @@ def display_rds_instances(rds_instances):
                          'Allocated Storage',
                          'Storage Encrypted',
                          'Engine',
-                         'Engine Version'
+                         'Engine Version',
+                         'Performance Insights'
                         ]
 
     for instance in rds_instances:
@@ -107,10 +121,11 @@ def display_rds_instances(rds_instances):
                        instance['Status'],
                        instance['AvailabilityZone'],
                        instance['PubliclyAccessible'],
-                       '%sGB' % instance['AllocatedStorage'],
+                       '%s GB' % instance['AllocatedStorage'],
                        instance['StorageEncrypted'],
                        instance['Engine'],
-                       instance['EngineVersion']
+                       instance['EngineVersion'],
+                       instance['PerformanceInsightsEnabled']
                       ])
 
     table.sortby = 'Instance Name'

@@ -32,10 +32,10 @@ optional arguments:
 The following information is displayed in table form for all the RDS instances located.
 
 ```
-Instance Name - instance identifier / name
-Engine - database engine (postgres/mysql etc) 
-Engine Version - current version
-Latest in PLace Upgrade - Latest version that can be upgraded 'in place'
-Latest Upgrade - Latest full upgrade version available
-Upgrade Available - True/False
+Instance Name
+Engine
+Engine Version
+Latest in PLace Upgrade
+Latest Upgrade
+Upgrade Available
 ```

@@ -18,7 +18,14 @@ import re
 import requests
 import sys
 
+from botocore.exceptions import ClientError, EndpointConnectionError
 from prettytable import PrettyTable
+
+empty_string = ''
+unknown_string = 'Unknown'
+unknown_version = '0.0.0'
+unknown_int = 0
+platform_cache = []
 
 
 def cmp_version(version1, version2):
@@ -74,36 +81,67 @@ def make_parser():
     return parser
 
 
-def get_latest_available_version(client, platform_name, os_version):
+def get_latest_available_platform_version(client, platform_name, os_version):
 
     """
     Get the list of available versions for a given platform name
     """
 
     available_versions = []
+    try:
+        response = client.list_platform_versions(Filters=[{
+                                                           'Type': 'PlatformName',
+                                                           'Operator': 'contains',
+                                                           'Values': [platform_name]
+                                                          }])
+    except ClientError as e:
+        print("ERROR: Unexpected error: %s" % e)
+    else:
+        if 'PlatformSummaryList' in response:
+            for result in response['PlatformSummaryList']:
+                if 'OperatingSystemVersion' in result and result['OperatingSystemVersion'] == os_version and 'PlatformArn' in result:
+                    parts = str(result['PlatformArn']).split('/')
+                    available_versions.append(parts[-1])
 
-    response = client.list_platform_versions(Filters=[{
-                                                       'Type': 'PlatformName',
-                                                       'Operator': 'contains',
-                                                       'Values': [platform_name]
-                                                      }])
-
-    for result in response['PlatformSummaryList']:
-        if result['OperatingSystemVersion'] == os_version:
-            parts = str(result['PlatformArn']).split('/')
-            available_versions.append(parts[-1])
-
-    return available_versions[0]
+    if (len(available_versions) > 0):
+        return available_versions[0]
+    return unknown_version
 
 
-def get_operating_system_version(client, PlatformArn):
-    response = client.describe_platform_version(PlatformArn=PlatformArn)
+def get_platform_information(client, PlatformArn):
+    """
+    Stuff
+    """
+    for cache in platform_cache:
+        if cache['PlatformArn'] == PlatformArn:
+            return cache['OperatingSystemVersion'], cache['PlatformName'], cache['PlatformVersion'], cache['LatestVersion']
 
-    OSVersion = response['PlatformDescription']['OperatingSystemVersion']
-    PlatformName = response['PlatformDescription']['PlatformName']
-    PlatformVersion = response['PlatformDescription']['PlatformVersion']
+    OSVersion = unknown_string
+    PlatformName = unknown_string
+    PlatformVersion = unknown_version
+    LatestVersion = unknown_version
 
-    return OSVersion, PlatformName, PlatformVersion
+    try:
+        response = client.describe_platform_version(PlatformArn=PlatformArn)
+    except ClientError as e:
+        print("ERROR: Unexpected error: %s" % e)
+    else:
+        if 'PlatformDescription' in response:
+            instance = response['PlatformDescription']
+            OSVersion = instance['OperatingSystemVersion'] if 'OperatingSystemVersion' in instance else unknown_string
+            PlatformName = instance['PlatformName'] if 'PlatformName' in instance else unknown_string
+            PlatformVersion = instance['PlatformVersion'] if 'PlatformVersion' in instance else unknown_version
+            LatestVersion = get_latest_available_platform_version(client, PlatformName, OSVersion)
+
+    platform_cache.append({
+                           'PlatformArn': PlatformArn,
+                           'OperatingSystemVersion': OSVersion,
+                           'PlatformName': PlatformName,
+                           'PlatformVersion': PlatformVersion,
+                           'LatestVersion': LatestVersion
+                          })
+
+    return OSVersion, PlatformName, PlatformVersion, LatestVersion
 
 
 def get_current_versions(client):
@@ -111,29 +149,27 @@ def get_current_versions(client):
     Get the current list of beanstalks and their versions
     """
     current_versions = []
-    previous_arn = ''
 
-    response = client.describe_environments()
+    try:
+        response = client.describe_environments()
+    except EndpointConnectionError as e:
+        print("ERROR: %s (Probably an invalid region!)" % e)
+    except Exception as e:
+        print("Unknown error: " + str(e))
+    else:
+        if 'Environments' in response and len(response['Environments']) > 0:
+            for result in response['Environments']:
+                os_version, platform_name, platform_version, latest_version = get_platform_information(client, result['PlatformArn'])
 
-    for result in response['Environments']:
-
-        if previous_arn != result['PlatformArn']:
-            """
-              Attempt to speed things up with a little bit of caching - only relookup details if the ARN changes
-            """
-            os_version, platform_name, platform_version = get_operating_system_version(client, result['PlatformArn'])
-            latest_version = get_latest_available_version(client, platform_name, os_version)
-            previous_arn = result['PlatformArn']
-
-        current_versions.append({
-            'ApplicationName': result['ApplicationName'],
-            'EnvironmentName': result['EnvironmentName'],
-            'SolutionStackName': result['SolutionStackName'],
-            'PlatformName': platform_name,
-            'PlatformVersion': platform_version,
-            'OSVersion': os_version,
-            'LatestPlatformVersion': latest_version
-        })
+                current_versions.append({
+                                         'ApplicationName': result['ApplicationName'],
+                                         'EnvironmentName': result['EnvironmentName'],
+                                         'SolutionStackName': result['SolutionStackName'],
+                                         'PlatformName': platform_name,
+                                         'PlatformVersion': platform_version,
+                                         'OSVersion': os_version,
+                                         'LatestPlatformVersion': latest_version
+                                        })
 
     return current_versions
 
@@ -176,8 +212,8 @@ def display_upgrades(current_upgrades):
     table = PrettyTable()
 
     table.field_names = [
-                         'Application Name',
-                         'Environment Name',
+                         'Application',
+                         'Environment',
                          'Solution Stack',
                          'Current Version',
                          'Latest Version',
@@ -194,7 +230,7 @@ def display_upgrades(current_upgrades):
                        upgrade['UpgradeAvailable']
                       ])
 
-    table.sortby = 'Environment Name'
+    table.sortby = 'Application'
     print(table)
 
 
