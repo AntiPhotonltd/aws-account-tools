@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all users from AIM
+This is a simple script for listing all roles from AIM
 
 Example Usage:
 
-    ./list-users.py
+    ./list-all-users.py
 """
 
 from __future__ import print_function
@@ -36,8 +36,8 @@ def main(cmdline=None):
 
     client = boto3.client('iam')
 
-    users = get_users(client)
-    display_users(users)
+    roles = get_roles(client)
+    display_roles(roles)
 
 
 def make_parser():
@@ -46,65 +46,62 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Users')
+    parser = argparse.ArgumentParser(description='List Roles')
 
     return parser
 
 
-def get_users(client):
+def get_roles(client):
     """
-    Query a list of current local users from IAM
+    Query a list of current roles
     """
 
-    users = []
+    roles = []
 
     try:
-        response = client.list_users()
+        response = client.list_roles()
     except EndpointConnectionError as e:
         print("ERROR: %s (Probably an invalid region!)" % e)
     except Exception as e:
         print("Unknown error: " + str(e))
     else:
-        if 'Users' in response:
-            for user in response['Users']:
-                users.append({
-                              'UserName': user['UserName'] if 'UserName' in user else unknown_string,
-                              'Path': user['Path'] if 'Path' in user else unknown_string,
-                              'CreateDate': user['CreateDate'] if 'CreateDate' in user else unknown_string,
-                              'UserId': user['UserId'] if 'UserId' in user else unknown_string,
-                              'Arn': user['Arn'] if 'Arn' in user else unknown_string,
-                              'PasswordLastUsed': user['PasswordLastUsed'] if 'PasswordLastUsed' in user else empty_string,
+        if 'Roles' in response:
+            for role in response['Roles']:
+                roles.append({
+                              'RoleName': role['RoleName'] if 'RoleName' in role else unknown_string,
+                              'RoleId': role['RoleId'] if 'RoleId' in role else unknown_string,
+                              'Path': role['Path'] if 'Path' in role else unknown_string,
+                              'Arn': role['Arn'] if 'Arn' in role else unknown_string,
+                              'CreateDate': role['CreateDate'] if 'CreateDate' in role else unknown_string,
                              })
-    return users
+    return roles
 
 
-def display_users(users):
+def display_roles(roles):
     """
-    Display all the users
+    Display all the roles
     """
 
     table = PrettyTable()
 
     table.field_names = [
-                         'UserName',
+                         'RoleName',
+                         'RoleId',
                          'Path',
-                         'Date Created',
-                         'User Id',
                          'Arn',
-                         'Password Last Used'
+                         'Date Created'
                         ]
 
-    for user in users:
+    for role in roles:
         table.add_row([
-                       user['UserName'],
-                       user['Path'],
-                       user['CreateDate'],
-                       user['UserId'],
-                       user['Arn'],
-                       user['PasswordLastUsed']
+                       role['RoleName'],
+                       role['RoleId'],
+                       role['Path'],
+                       role['Arn'],
+                       role['CreateDate']
                       ])
 
-    table.sortby = 'UserName'
+    table.sortby = 'RoleName'
     print(table)
 
 

@@ -27,8 +27,9 @@ A collection of simply tools for managing and auditing AWS.
 
 | Name | Description | README.md |
 | --- | --- | --- |
-| [list-users.py](src/iam/list-users/list-users.py) | List all of the available users and some details about them. | [README.md](src/iam/list-users/README.md)
 | [list-access-keys.py](src/iam/list-access-keys/list-access-keys.py) | List of the available access keys and some details about them . | [README.md](src/iam/list-access-keys/README.md)
+| [list-roles.py](src/iam/list-roles/list-roles.py) | List all of the available roles and some details about them. | [README.md](src/iam/list-roles/README.md)
+| [list-users.py](src/iam/list-users/list-users.py) | List all of the available users and some details about them. | [README.md](src/iam/list-users/README.md)
 
 
 ## RDS

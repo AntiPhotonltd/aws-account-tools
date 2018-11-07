@@ -6,6 +6,7 @@ CHANGES:
 * Added a new section for EC2 scripts. ([@TGWolf][])
 * Added a new script elasticbeanstalk/list-beanstalks.py. ([@TGWolf][])
 * Added a new script iam/list-users.py script. ([@TGWolf][])
+* Added a new script iam/list-roles.py script. ([@TGWolf][])
 * Added a new script iam/list-access-keys.py script. ([@TGWolf][])
 * Added a new script ec2/list-key-pairs.py script. ([@TGWolf][])
 * Added better error detection to all scripts. ([@TGWolf][])
