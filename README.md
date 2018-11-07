@@ -10,12 +10,25 @@ AWS Tools
 
 A collection of simply tools for managing and auditing AWS.
 
+## EC2
+
+| Name | Description | README.md |
+| --- | --- | --- |
+| [list-key-pairs.py](src/ec2/list-key-pairs/list-key-pairs.py) | List of the available key pairs. | [README.md](src/ec2/list-key-pairs/README.md)
+
 ## Elastic Beanstalks
 
 | Name | Description | README.md |
 | --- | --- | --- |
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Check to see if there is an upgrade available for your Elastic Beanstalk. | [README.md](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)
-| [list-all-beanstalks.py](src/elasticbeanstalk/list-all-beanstalks/list-all-beanstalks.py) | List all of the beanstalks and some details about them. | [README.md](src/elasticbeanstalk/list-all-beanstalks/README.md)
+| [list-beanstalks.py](src/elasticbeanstalk/list-beanstalks/list-beanstalks.py) | List of the available beanstalks and some details about them. | [README.md](src/elasticbeanstalk/list-beanstalks/README.md)
+
+## IAM
+
+| Name | Description | README.md |
+| --- | --- | --- |
+| [list-users.py](src/iam/list-users/list-users.py) | List all of the available users and some details about them. | [README.md](src/iam/list-users/README.md)
+| [list-access-keys.py](src/iam/list-access-keys/list-access-keys.py) | List of the available access keys and some details about them . | [README.md](src/iam/list-access-keys/README.md)
 
 
 ## RDS
@@ -23,5 +36,5 @@ A collection of simply tools for managing and auditing AWS.
 | Name | Description | README.md |
 | --- | --- | --- |
 | [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | Check to see if there is an upgrade available for your RDS. | [README.md](src/rds/check-for-rds-upgrade/README.md) |
-| [list-all-rds-instances.py](src/rds/list-all-rds-instances/list-all-rds-instances.py) | List all available RDS instances and some details about them. |  [README.md](src/rds/list-all-rds-instances/README.md) |
+| [list-rds-instances.py](src/rds/list-rds-instances/list-rds-instances.py) | List of the available RDS instances and some details about them. |  [README.md](src/rds/list-rds-instances/README.md) |
 

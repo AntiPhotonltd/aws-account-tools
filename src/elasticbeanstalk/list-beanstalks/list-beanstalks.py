@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for liting all available beanstalks.
+This is a simple script for listing all available beanstalks.
 
 Example Usage:
 
-    ./list-all-beanstalks.py
+    ./list-beanstalks.py
 """
 
 from __future__ import print_function
@@ -39,8 +39,8 @@ def main(cmdline=None):
     else:
         client = boto3.client('elasticbeanstalk')
 
-    all_beanstalks = get_all_beanstalks(client)
-    display_all_beanstalks(all_beanstalks)
+    beanstalks = get_beanstalks(client)
+    display_beanstalks(beanstalks)
 
 
 def make_parser():
@@ -49,13 +49,13 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List all Beanstalks')
+    parser = argparse.ArgumentParser(description='List Beanstalks')
 
     parser.add_argument('-r', '--region', help='The aws region')
     return parser
 
 
-def get_all_beanstalks(client):
+def get_beanstalks(client):
     """
     Query a list of current beanstalks and their details
     """
@@ -84,7 +84,7 @@ def get_all_beanstalks(client):
     return beanstalks
 
 
-def display_all_beanstalks(all_beanstalks):
+def display_beanstalks(beanstalks):
     """
     Display thr beanstalk information
     """
@@ -101,7 +101,7 @@ def display_all_beanstalks(all_beanstalks):
                          'HealthStatus'
                         ]
 
-    for instance in all_beanstalks:
+    for instance in beanstalks:
         table.add_row([
                        instance['ApplicationName'],
                        instance['EnvironmentName'],

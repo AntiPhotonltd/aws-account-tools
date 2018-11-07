@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all available RDS instances.
+This is a simple script for listing the available RDS instances.
 
 Example Usage:
 
-    ./list-all-rds-instances.py
+    ./list-rds-instances.py
 """
 
 from __future__ import print_function
@@ -39,7 +39,7 @@ def main(cmdline=None):
     else:
         client = boto3.client('rds')
 
-    rds_instances = get_all_rds_instances(client)
+    rds_instances = get_rds_instances(client)
     display_rds_instances(rds_instances)
 
 
@@ -49,13 +49,13 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List all RDS Instances')
+    parser = argparse.ArgumentParser(description='List RDS Instances')
 
     parser.add_argument('-r', '--region', help='The aws region')
     return parser
 
 
-def get_all_rds_instances(client):
+def get_rds_instances(client):
     """
     Query a list of current RDS instances and their details
     """
@@ -82,7 +82,7 @@ def get_all_rds_instances(client):
                 rds_instances.append({
                                       'InstanceName': instance['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in instance else unknown_string,
                                       'InstanceClass': instance['DBInstanceClass'] if 'DBInstanceClass' in instance else unknown_string,
-                                      'Status': instance['DBInstanceStatus'] if 'Status' in instance else unknown_string,
+                                      'Status': instance['DBInstanceStatus'] if 'DBInstanceStatus' in instance else unknown_string,
                                       'AvailabilityZone': AZS,
                                       'PubliclyAccessible': instance['PubliclyAccessible'] if 'PubliclyAccessible' in instance else unknown_string,
                                       'AllocatedStorage': instance['AllocatedStorage'] if 'AllocatedStorage' in instance else unknown_string,
