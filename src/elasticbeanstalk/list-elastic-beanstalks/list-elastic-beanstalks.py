@@ -68,15 +68,15 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'Environments' in response and len(response['Environments']) > 0:
-            for result in response['Environments']:
+            for parts in response['Environments']:
                 results.append({
-                                'ApplicationName': result['ApplicationName'] if 'ApplicationName' in result else unknown_string,
-                                'EnvironmentName': result['EnvironmentName'] if 'EnvironmentName' in result else unknown_string,
-                                'SolutionStackName': result['SolutionStackName'] if 'SolutionStackName' in result else unknown_string,
-                                'VersionLabel': result['VersionLabel'] if 'VersionLabel' in result else empty_string,
-                                'Status': result['Status'] if 'Status' in result else unknown_string,
-                                'Health': result['Health'] if 'Health' in result else unknown_string,
-                                'HealthStatus': result['HealthStatus'] if 'HealthStatus' in result else unknown_string,
+                                'ApplicationName': parts['ApplicationName'] if 'ApplicationName' in parts else unknown_string,
+                                'EnvironmentName': parts['EnvironmentName'] if 'EnvironmentName' in parts else unknown_string,
+                                'SolutionStackName': parts['SolutionStackName'] if 'SolutionStackName' in parts else unknown_string,
+                                'VersionLabel': parts['VersionLabel'] if 'VersionLabel' in parts else empty_string,
+                                'Status': parts['Status'] if 'Status' in parts else unknown_string,
+                                'Health': parts['Health'] if 'Health' in parts else unknown_string,
+                                'HealthStatus': parts['HealthStatus'] if 'HealthStatus' in parts else unknown_string,
                                })
 
     return results
@@ -99,15 +99,15 @@ def display_results(results):
                          'HealthStatus'
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['ApplicationName'],
-                       item['EnvironmentName'],
-                       item['SolutionStackName'],
-                       item['VersionLabel'],
-                       item['Status'],
-                       item['Health'],
-                       item['HealthStatus'],
+                       parts['ApplicationName'],
+                       parts['EnvironmentName'],
+                       parts['SolutionStackName'],
+                       parts['VersionLabel'],
+                       parts['Status'],
+                       parts['Health'],
+                       parts['HealthStatus'],
                       ])
 
     table.sortby = 'Application'

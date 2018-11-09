@@ -3,7 +3,7 @@
 """
 Example Usage:
 
-    ./list-kms-keys.py
+    ./list-kinesis-streams.py
 """
 
 from __future__ import print_function
@@ -33,9 +33,9 @@ def main(cmdline=None):
     args = parser.parse_args(cmdline)
 
     if args.region:
-        client = boto3.client('kms', region_name=args.region)
+        client = boto3.client('kinesis', region_name=args.region)
     else:
-        client = boto3.client('kms')
+        client = boto3.client('kinesis')
 
     results = query_api(client, args)
     display_results(results)
@@ -47,9 +47,9 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List KMS Keys')
-    parser.add_argument('-r', '--region', help='The aws region')
+    parser = argparse.ArgumentParser(description='List Kinesis Streams')
 
+    parser.add_argument('-r', '--region', help='The aws region')
     return parser
 
 
@@ -61,17 +61,16 @@ def query_api(client, args):
     results = []
 
     try:
-        response = client.list_keys()
+        response = client.list_streams()
     except EndpointConnectionError as e:
         print("ERROR: %s (Probably an invalid region!)" % e)
     except Exception as e:
         print("Unknown error: " + str(e))
     else:
-        if 'Keys' in response:
-            for parts in response['Keys']:
+        if 'StreamNames' in response:
+            for parts in response['StreamNames']:
                 results.append({
-                                'KeyId': parts['KeyId'] if 'KeyId' in parts else unknown_string,
-                                'KeyArn': parts['KeyArn'] if 'KeyArn' in parts else unknown_string,
+                                'StreamName': parts,
                                })
     return results
 
@@ -84,17 +83,15 @@ def display_results(results):
     table = PrettyTable()
 
     table.field_names = [
-                         'Key ID',
-                         'Key ARN'
+                         'Stream Name',
                         ]
 
     for parts in results:
         table.add_row([
-                       parts['KeyId'],
-                       parts['KeyArn']
+                       parts['StreamName'],
                       ])
 
-    table.sortby = 'Key ID'
+    table.sortby = 'Stream Name'
     print(table)
 
 

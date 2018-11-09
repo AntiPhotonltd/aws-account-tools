@@ -64,13 +64,13 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'Roles' in response:
-            for role in response['Roles']:
+            for parts in response['Roles']:
                 results.append({
-                                'RoleName': role['RoleName'] if 'RoleName' in role else unknown_string,
-                                'RoleId': role['RoleId'] if 'RoleId' in role else unknown_string,
-                                'Path': role['Path'] if 'Path' in role else unknown_string,
-                                'Arn': role['Arn'] if 'Arn' in role else unknown_string,
-                                'CreateDate': role['CreateDate'] if 'CreateDate' in role else unknown_string,
+                                'RoleName': parts['RoleName'] if 'RoleName' in parts else unknown_string,
+                                'RoleId': parts['RoleId'] if 'RoleId' in parts else unknown_string,
+                                'Path': parts['Path'] if 'Path' in parts else unknown_string,
+                                'Arn': parts['Arn'] if 'Arn' in parts else unknown_string,
+                                'CreateDate': parts['CreateDate'] if 'CreateDate' in parts else unknown_string,
                                })
     return results
 
@@ -90,13 +90,13 @@ def display_results(results):
                          'Date Created'
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['RoleName'],
-                       item['RoleId'],
-                       item['Path'],
-                       item['Arn'],
-                       item['CreateDate']
+                       parts['RoleName'],
+                       parts['RoleId'],
+                       parts['Path'],
+                       parts['Arn'],
+                       parts['CreateDate']
                       ])
 
     table.sortby = 'RoleName'

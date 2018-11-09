@@ -64,12 +64,12 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'AccessKeyMetadata' in response:
-            for key in response['AccessKeyMetadata']:
+            for parts in response['AccessKeyMetadata']:
                 results.append({
-                                'UserName': key['UserName'] if 'UserName' in key else unknown_string,
-                                'Status': key['Status'] if 'Status' in key else unknown_string,
-                                'CreateDate': key['CreateDate'] if 'CreateDate' in key else unknown_string,
-                                'AccessKeyId': key['AccessKeyId'] if 'AccessKeyId' in key else unknown_string,
+                                'UserName': parts['UserName'] if 'UserName' in parts else unknown_string,
+                                'Status': parts['Status'] if 'Status' in parts else unknown_string,
+                                'CreateDate': parts['CreateDate'] if 'CreateDate' in parts else unknown_string,
+                                'AccessKeyId': parts['AccessKeyId'] if 'AccessKeyId' in parts else unknown_string,
                                })
     return results
 
@@ -85,15 +85,15 @@ def display_results(results):
                          'UserName',
                          'Status',
                          'Date Created',
-                         'Access Key ID'
+                         'Access Key ID',
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['UserName'],
-                       item['Status'],
-                       item['CreateDate'],
-                       item['AccessKeyId'],
+                       parts['UserName'],
+                       parts['Status'],
+                       parts['CreateDate'],
+                       parts['AccessKeyId'],
                       ])
 
     table.sortby = 'UserName'

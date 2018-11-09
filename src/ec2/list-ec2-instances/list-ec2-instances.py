@@ -84,17 +84,17 @@ def query_api(client, arg):
             reservations = response['Reservations']
             for reservation in reservations:
                 if 'Instances' in reservation:
-                    for instance in reservation['Instances']:
-                        if instance['State']['Name'] == 'running' or args.all:
+                    for parts in reservation['Instances']:
+                        if parts['State']['Name'] == 'running' or args.all:
                             results.append({
-                                            'Name': get_tag_value(instance['Tags'], 'Name') if 'Tags' in instance else unknown_string,
-                                            'InstanceId': instance['InstanceId'] if 'InstanceId' in instance else unknown_string,
-                                            'InstanceType': instance['InstanceType'] if 'InstanceType' in instance else unknown_string,
-                                            'PrivateIpAddress': instance['PrivateIpAddress'] if 'PrivateIpAddress' in instance else unknown_string,
-                                            'AvailabilityZone': instance['Placement']['AvailabilityZone'] if 'AvailabilityZone' in instance['Placement'] else unknown_string,
-                                            'State': instance['State']['Name'] if 'Name' in instance['State'] else unknown_string,
-                                            'VpcId': instance['VpcId'] if 'VpcId' in instance else unknown_string,
-                                            'KeyName': instance['KeyName'] if 'KeyName' in instance else unknown_string,
+                                            'Name': get_tag_value(parts['Tags'], 'Name') if 'Tags' in parts else unknown_string,
+                                            'InstanceId': parts['InstanceId'] if 'InstanceId' in parts else unknown_string,
+                                            'InstanceType': parts['InstanceType'] if 'InstanceType' in parts else unknown_string,
+                                            'PrivateIpAddress': parts['PrivateIpAddress'] if 'PrivateIpAddress' in parts else unknown_string,
+                                            'AvailabilityZone': parts['Placement']['AvailabilityZone'] if 'AvailabilityZone' in parts['Placement'] else unknown_string,
+                                            'State': parts['State']['Name'] if 'Name' in parts['State'] else unknown_string,
+                                            'VpcId': parts['VpcId'] if 'VpcId' in parts else unknown_string,
+                                            'KeyName': parts['KeyName'] if 'KeyName' in parts else unknown_string,
                                            })
     return results
 
@@ -117,16 +117,16 @@ def display_results(results):
                          'SSH Key Name',
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['Name'],
-                       item['State'],
-                       item['AvailabilityZone'],
-                       item['InstanceId'],
-                       item['InstanceType'],
-                       item['PrivateIpAddress'],
-                       item['VpcId'],
-                       item['KeyName'],
+                       parts['Name'],
+                       parts['State'],
+                       parts['AvailabilityZone'],
+                       parts['InstanceId'],
+                       parts['InstanceType'],
+                       parts['PrivateIpAddress'],
+                       parts['VpcId'],
+                       parts['KeyName'],
                       ])
 
     table.sortby = 'Name'

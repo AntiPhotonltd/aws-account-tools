@@ -64,10 +64,10 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'Buckets' in response:
-            for bucket in response['Buckets']:
+            for parts in response['Buckets']:
                 results.append({
-                                'Name': bucket['Name'] if 'Name' in bucket else unknown_string,
-                                'CreationDate': bucket['CreationDate'] if 'CreationDate' in bucket else unknown_string,
+                                'Name': parts['Name'] if 'Name' in parts else unknown_string,
+                                'CreationDate': parts['CreationDate'] if 'CreationDate' in parts else unknown_string,
                                })
     return results
 
@@ -81,13 +81,13 @@ def display_results(results):
 
     table.field_names = [
                          'Name',
-                         'Date Created'
+                         'Date Created',
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['Name'],
-                       item['CreationDate']
+                       parts['Name'],
+                       parts['CreationDate'],
                       ])
 
     table.sortby = 'Name'

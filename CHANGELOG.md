@@ -2,12 +2,17 @@
 
 CHANGES:
 
-* Added a new section for ACM scripts. ([@TGWolf][])
-* Added a new section for KMS scripts. ([@TGWolf][])
-* Added a new section for S3 scripts. ([@TGWolf][])
+* Added a new section for acm scripts. ([@TGWolf][])
+* Added a new section for kinesis scripts. ([@TGWolf][])
+* Added a new section for kms scripts. ([@TGWolf][])
+* Added a new section for lambda scripts. ([@TGWolf][])
+* Added a new section for s3 scripts. ([@TGWolf][])
 * Added a new script acm/list-certificates.py. ([@TGWolf][])
-* Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
+* Added a new script ec2/list-vpcs.py. ([@TGWolf][])
+* Added a new script kinesis/list-kinesis-streams.py. ([@TGWolf][])
 * Added a new script kms/list-kms-keys.py. ([@TGWolf][])
+* Added a new script lambda/list-lambda-functions.py ([@TGWolf][])
+* Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
 * General tidy up of all scripts and internal docs / readme files. ([@TGWolf][])
 
 ## 1.0.3 (November 7, 2018)

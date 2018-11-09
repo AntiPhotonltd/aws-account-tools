@@ -64,14 +64,14 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'Users' in response:
-            for user in response['Users']:
+            for parts in response['Users']:
                 results.append({
-                                'UserName': user['UserName'] if 'UserName' in user else unknown_string,
-                                'Path': user['Path'] if 'Path' in user else unknown_string,
-                                'CreateDate': user['CreateDate'] if 'CreateDate' in user else unknown_string,
-                                'UserId': user['UserId'] if 'UserId' in user else unknown_string,
-                                'Arn': user['Arn'] if 'Arn' in user else unknown_string,
-                                'PasswordLastUsed': user['PasswordLastUsed'] if 'PasswordLastUsed' in user else empty_string,
+                                'UserName': parts['UserName'] if 'UserName' in parts else unknown_string,
+                                'Path': parts['Path'] if 'Path' in parts else unknown_string,
+                                'CreateDate': parts['CreateDate'] if 'CreateDate' in parts else unknown_string,
+                                'UserId': parts['UserId'] if 'UserId' in parts else unknown_string,
+                                'Arn': parts['Arn'] if 'Arn' in parts else unknown_string,
+                                'PasswordLastUsed': parts['PasswordLastUsed'] if 'PasswordLastUsed' in parts else empty_string,
                                })
     return results
 
@@ -92,14 +92,14 @@ def display_results(results):
                          'Password Last Used'
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['UserName'],
-                       item['Path'],
-                       item['CreateDate'],
-                       item['UserId'],
-                       item['Arn'],
-                       item['PasswordLastUsed']
+                       parts['UserName'],
+                       parts['Path'],
+                       parts['CreateDate'],
+                       parts['UserId'],
+                       parts['Arn'],
+                       parts['PasswordLastUsed']
                       ])
 
     table.sortby = 'UserName'

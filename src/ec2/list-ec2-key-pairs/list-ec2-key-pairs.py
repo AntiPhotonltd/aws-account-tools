@@ -68,10 +68,10 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'KeyPairs' in response:
-            for kp in response['KeyPairs']:
+            for parts in response['KeyPairs']:
                 results.append({
-                                'KeyName': kp['KeyName'] if 'KeyName' in kp else unknown_string,
-                                'KeyFingerprint': kp['KeyFingerprint'] if 'KeyFingerprint' in kp else unknown_string
+                                'KeyName': parts['KeyName'] if 'KeyName' in parts else unknown_string,
+                                'KeyFingerprint': parts['KeyFingerprint'] if 'KeyFingerprint' in parts else unknown_string,
                                })
     return results
 
@@ -85,13 +85,13 @@ def display_results(results):
 
     table.field_names = [
                          'Key Name',
-                         'Fingerprint'
+                         'Fingerprint',
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['KeyName'],
-                       item['KeyFingerprint'],
+                       parts['KeyName'],
+                       parts['KeyFingerprint'],
                       ])
 
     table.sortby = 'Key Name'

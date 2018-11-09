@@ -64,10 +64,10 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'CertificateSummaryList' in response:
-            for cert in response['CertificateSummaryList']:
+            for parts in response['CertificateSummaryList']:
                 results.append({
-                                'CertificateArn': cert['CertificateArn'] if 'CertificateArn' in cert else unknown_string,
-                                'DomainName': cert['DomainName'] if 'DomainName' in cert else unknown_string
+                                'CertificateArn': parts['CertificateArn'] if 'CertificateArn' in parts else unknown_string,
+                                'DomainName': parts['DomainName'] if 'DomainName' in parts else unknown_string,
                                })
     return results
 
@@ -81,13 +81,13 @@ def display_results(results):
 
     table.field_names = [
                          'Domain Name',
-                         'Certificate Arn'
+                         'Certificate Arn',
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['DomainName'],
-                       item['CertificateArn']
+                       parts['DomainName'],
+                       parts['CertificateArn'],
                       ])
 
     table.sortby = 'Domain Name'

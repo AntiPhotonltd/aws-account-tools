@@ -68,26 +68,26 @@ def query_api(client, args):
         print("Unknown error: " + str(e))
     else:
         if 'DBInstances' in response:
-            for instance in response['DBInstances']:
-                if 'AvailabilityZone' in instance:
-                    if 'SecondaryAvailabilityZone' in instance:
-                        AZS = '%s & %s' % (instance['AvailabilityZone'], instance['SecondaryAvailabilityZone'])
+            for parts in response['DBInstances']:
+                if 'AvailabilityZone' in parts:
+                    if 'SecondaryAvailabilityZone' in parts:
+                        AZS = '%s & %s' % (parts['AvailabilityZone'], parts['SecondaryAvailabilityZone'])
                     else:
-                        AZS = instance['AvailabilityZone']
+                        AZS = parts['AvailabilityZone']
                 else:
                     AZS = unknown_string
 
                 results.append({
-                                'InstanceName': instance['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in instance else unknown_string,
-                                'InstanceClass': instance['DBInstanceClass'] if 'DBInstanceClass' in instance else unknown_string,
-                                'Status': instance['DBInstanceStatus'] if 'DBInstanceStatus' in instance else unknown_string,
+                                'InstanceName': parts['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in parts else unknown_string,
+                                'InstanceClass': parts['DBInstanceClass'] if 'DBInstanceClass' in parts else unknown_string,
+                                'Status': parts['DBInstanceStatus'] if 'DBInstanceStatus' in parts else unknown_string,
                                 'AvailabilityZone': AZS,
-                                'PubliclyAccessible': instance['PubliclyAccessible'] if 'PubliclyAccessible' in instance else unknown_string,
-                                'AllocatedStorage': instance['AllocatedStorage'] if 'AllocatedStorage' in instance else unknown_string,
-                                'StorageEncrypted': instance['StorageEncrypted'] if 'StorageEncrypted' in instance else unknown_string,
-                                'Engine': instance['Engine'] if 'Engine' in instance else unknown_string,
-                                'EngineVersion': instance['EngineVersion'] if 'EngineVersion' in instance else unknown_string,
-                                'PerformanceInsightsEnabled': instance['PerformanceInsightsEnabled'] if 'PerformanceInsightsEnabled' in instance else unknown_string,
+                                'PubliclyAccessible': parts['PubliclyAccessible'] if 'PubliclyAccessible' in parts else unknown_string,
+                                'AllocatedStorage': parts['AllocatedStorage'] if 'AllocatedStorage' in parts else unknown_string,
+                                'StorageEncrypted': parts['StorageEncrypted'] if 'StorageEncrypted' in parts else unknown_string,
+                                'Engine': parts['Engine'] if 'Engine' in parts else unknown_string,
+                                'EngineVersion': parts['EngineVersion'] if 'EngineVersion' in parts else unknown_string,
+                                'PerformanceInsightsEnabled': parts['PerformanceInsightsEnabled'] if 'PerformanceInsightsEnabled' in parts else unknown_string,
                                })
     return results
 
@@ -112,18 +112,18 @@ def display_results(results):
                          'Performance Insights'
                         ]
 
-    for item in results:
+    for parts in results:
         table.add_row([
-                       item['InstanceName'],
-                       item['InstanceClass'],
-                       item['Status'],
-                       item['AvailabilityZone'],
-                       item['PubliclyAccessible'],
-                       '%s GB' % item['AllocatedStorage'],
-                       item['StorageEncrypted'],
-                       item['Engine'],
-                       item['EngineVersion'],
-                       item['PerformanceInsightsEnabled']
+                       parts['InstanceName'],
+                       parts['InstanceClass'],
+                       parts['Status'],
+                       parts['AvailabilityZone'],
+                       parts['PubliclyAccessible'],
+                       '%s GB' % parts['AllocatedStorage'],
+                       parts['StorageEncrypted'],
+                       parts['Engine'],
+                       parts['EngineVersion'],
+                       parts['PerformanceInsightsEnabled']
                       ])
 
     table.sortby = 'Instance Name'
