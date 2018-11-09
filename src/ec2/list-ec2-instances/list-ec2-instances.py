@@ -89,7 +89,7 @@ def get_ec2_instances(client, all):
                     for instance in reservation['Instances']:
                         if instance['State']['Name'] == 'running' or all:
                             ec2_instances.append({
-                                                  'Name': get_tag_value(instance['Tags'], 'Name'),
+                                                  'Name': get_tag_value(instance['Tags'], 'Name') if 'Tags' in instance else unknown_string,
                                                   'InstanceId': instance['InstanceId'] if 'InstanceId' in instance else unknown_string,
                                                   'InstanceType': instance['InstanceType'] if 'InstanceType' in instance else unknown_string,
                                                   'PrivateIpAddress': instance['PrivateIpAddress'] if 'PrivateIpAddress' in instance else unknown_string,
@@ -111,12 +111,12 @@ def display_ec2_instances(ec2_instances):
     table.field_names = [
                          'Name',
                          'State',
-                         'AvailabilityZone',
+                         'Availability Zone',
                          'Instance ID',
                          'Instance Type',
                          'Private IP',
                          'VPC ID',
-                         'KeyName',
+                         'SSH Key Name',
                         ]
 
     for instance in ec2_instances:
