@@ -1,19 +1,19 @@
-List RDS Instances
+List EC2 Key Pairs
 =========
 
 ## Simple Usage
 
 ```
-./list-rds-instances.py
+./list-ec2-key-pairs.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-rds-instances.py [-h] [-r REGION]
+usage: list-ec2-key-pairs.py [-h] [-r REGION]
 
-List RDS Instances
+List EC2 Key Pairs
 
 optional arguments:
   -h, --help            show this help message and exit

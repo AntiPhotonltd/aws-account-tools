@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for checking if there are upgrades available for your RDS.
-
 Example Usage:
 
     ./check-for-rds-upgrade.py
-
-Based on an original idea by https://github.com/adamdodev
 """
 
 from __future__ import print_function

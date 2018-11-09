@@ -1,8 +1,6 @@
 List KSM Keys
 =========
 
-This is a simple script to retrieve a list of all KMS keys and display some information about them.
-
 ## Simple Usage
 
 ```
@@ -22,13 +20,4 @@ optional arguments:
   -r REGION, --region REGION
                         The aws region
 
-```
-
-## Information Displayed
-
-The following information is displayed in table form
-
-```
-Key ID
-Key Arn
 ```

@@ -1,19 +1,19 @@
-List S3 Buckets
+List IAM Roles
 =========
 
 ## Simple Usage
 
 ```
-./list-s3-buckets.py
+./list-iam-roles.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-s3-buckets.py [-h]
+usage: list-iam-roles.py [-h]
 
-List S3 Buckets
+List IAM Roles
 
 optional arguments:
   -h, --help  show this help message and exit

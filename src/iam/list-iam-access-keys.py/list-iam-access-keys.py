@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all roles from AIM
-
 Example Usage:
 
-    ./list-roles.py
+    ./list-iam-access-keys.py
 """
 
 from __future__ import print_function
@@ -36,8 +34,8 @@ def main(cmdline=None):
 
     client = boto3.client('iam')
 
-    roles = get_roles(client)
-    display_roles(roles)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -46,62 +44,59 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Roles')
+    parser = argparse.ArgumentParser(description='List IAM Access Keys')
 
     return parser
 
 
-def get_roles(client):
+def query_api(client, args):
     """
-    Query a list of current roles
+    Query the API
     """
 
-    roles = []
+    results = []
 
     try:
-        response = client.list_roles()
+        response = client.list_access_keys()
     except EndpointConnectionError as e:
         print("ERROR: %s (Probably an invalid region!)" % e)
     except Exception as e:
         print("Unknown error: " + str(e))
     else:
-        if 'Roles' in response:
-            for role in response['Roles']:
-                roles.append({
-                              'RoleName': role['RoleName'] if 'RoleName' in role else unknown_string,
-                              'RoleId': role['RoleId'] if 'RoleId' in role else unknown_string,
-                              'Path': role['Path'] if 'Path' in role else unknown_string,
-                              'Arn': role['Arn'] if 'Arn' in role else unknown_string,
-                              'CreateDate': role['CreateDate'] if 'CreateDate' in role else unknown_string,
-                             })
-    return roles
+        if 'AccessKeyMetadata' in response:
+            for key in response['AccessKeyMetadata']:
+                results.append({
+                                'UserName': key['UserName'] if 'UserName' in key else unknown_string,
+                                'Status': key['Status'] if 'Status' in key else unknown_string,
+                                'CreateDate': key['CreateDate'] if 'CreateDate' in key else unknown_string,
+                                'AccessKeyId': key['AccessKeyId'] if 'AccessKeyId' in key else unknown_string,
+                               })
+    return results
 
 
-def display_roles(roles):
+def display_results(results):
     """
-    Display all the roles
+    Display the results
     """
 
     table = PrettyTable()
 
     table.field_names = [
-                         'RoleName',
-                         'RoleId',
-                         'Path',
-                         'Arn',
-                         'Date Created'
+                         'UserName',
+                         'Status',
+                         'Date Created',
+                         'Access Key ID'
                         ]
 
-    for role in roles:
+    for item in results:
         table.add_row([
-                       role['RoleName'],
-                       role['RoleId'],
-                       role['Path'],
-                       role['Arn'],
-                       role['CreateDate']
+                       item['UserName'],
+                       item['Status'],
+                       item['CreateDate'],
+                       item['AccessKeyId'],
                       ])
 
-    table.sortby = 'RoleName'
+    table.sortby = 'UserName'
     print(table)
 
 

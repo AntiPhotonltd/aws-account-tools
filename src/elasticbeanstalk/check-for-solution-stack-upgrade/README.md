@@ -1,8 +1,6 @@
 Check for Solution Stack Upgrades
 =========
 
-This script wil check all of your elastic beanstalks and inform you if there are any upgrades available.
-
 ## Simple Usage
 
 ```
@@ -25,17 +23,4 @@ optional arguments:
                         The aws region
   -s, --silent          Surpress all output
 
-```
-
-## Information Displayed
-
-The following information is displayed in table form for all the beanstalks located.
-
-```
-Application Name
-Environment Name
-Solution Stack
-Current Version
-Latest Version
-Upgrade Available
 ```

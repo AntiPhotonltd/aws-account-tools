@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all S3 buckets
-
 Example Usage:
 
     ./list-s3-buckets.py
@@ -36,8 +34,8 @@ def main(cmdline=None):
 
     client = boto3.client('s3')
 
-    s3_buckets = get_s3_buckets(client)
-    display_s3_buckets(s3_buckets)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -51,12 +49,12 @@ def make_parser():
     return parser
 
 
-def get_s3_buckets(client):
+def query_api(client, args):
     """
-    Query a list of current buckets
+    Query the API
     """
 
-    s3_buckets = []
+    results = []
 
     try:
         response = client.list_buckets()
@@ -67,16 +65,16 @@ def get_s3_buckets(client):
     else:
         if 'Buckets' in response:
             for bucket in response['Buckets']:
-                s3_buckets.append({
-                                   'Name': bucket['Name'] if 'Name' in bucket else unknown_string,
-                                   'CreationDate': bucket['CreationDate'] if 'CreationDate' in bucket else unknown_string,
-                                  })
-    return s3_buckets
+                results.append({
+                                'Name': bucket['Name'] if 'Name' in bucket else unknown_string,
+                                'CreationDate': bucket['CreationDate'] if 'CreationDate' in bucket else unknown_string,
+                               })
+    return results
 
 
-def display_s3_buckets(s3_buckets):
+def display_results(results):
     """
-    Display all the buckets
+    Display the results
     """
 
     table = PrettyTable()
@@ -86,10 +84,10 @@ def display_s3_buckets(s3_buckets):
                          'Date Created'
                         ]
 
-    for bucket in s3_buckets:
+    for item in results:
         table.add_row([
-                       bucket['Name'],
-                       bucket['CreationDate']
+                       item['Name'],
+                       item['CreationDate']
                       ])
 
     table.sortby = 'Name'

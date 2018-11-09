@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all available beanstalks.
-
 Example Usage:
 
-    ./list-beanstalks.py
+    ./list-elastic-beanstalks.py
 """
 
 from __future__ import print_function
@@ -39,8 +37,8 @@ def main(cmdline=None):
     else:
         client = boto3.client('elasticbeanstalk')
 
-    beanstalks = get_beanstalks(client)
-    display_beanstalks(beanstalks)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -49,18 +47,18 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Beanstalks')
+    parser = argparse.ArgumentParser(description='List Elastic Beanstalks')
 
     parser.add_argument('-r', '--region', help='The aws region')
     return parser
 
 
-def get_beanstalks(client):
+def query_api(client, args):
     """
-    Query a list of current beanstalks and their details
+    Query the API
     """
 
-    beanstalks = []
+    results = []
 
     try:
         response = client.describe_environments()
@@ -71,22 +69,22 @@ def get_beanstalks(client):
     else:
         if 'Environments' in response and len(response['Environments']) > 0:
             for result in response['Environments']:
-                beanstalks.append({
-                                   'ApplicationName': result['ApplicationName'] if 'ApplicationName' in result else unknown_string,
-                                   'EnvironmentName': result['EnvironmentName'] if 'EnvironmentName' in result else unknown_string,
-                                   'SolutionStackName': result['SolutionStackName'] if 'SolutionStackName' in result else unknown_string,
-                                   'VersionLabel': result['VersionLabel'] if 'VersionLabel' in result else empty_string,
-                                   'Status': result['Status'] if 'Status' in result else unknown_string,
-                                   'Health': result['Health'] if 'Health' in result else unknown_string,
-                                   'HealthStatus': result['HealthStatus'] if 'HealthStatus' in result else unknown_string,
-                                  })
+                results.append({
+                                'ApplicationName': result['ApplicationName'] if 'ApplicationName' in result else unknown_string,
+                                'EnvironmentName': result['EnvironmentName'] if 'EnvironmentName' in result else unknown_string,
+                                'SolutionStackName': result['SolutionStackName'] if 'SolutionStackName' in result else unknown_string,
+                                'VersionLabel': result['VersionLabel'] if 'VersionLabel' in result else empty_string,
+                                'Status': result['Status'] if 'Status' in result else unknown_string,
+                                'Health': result['Health'] if 'Health' in result else unknown_string,
+                                'HealthStatus': result['HealthStatus'] if 'HealthStatus' in result else unknown_string,
+                               })
 
-    return beanstalks
+    return results
 
 
-def display_beanstalks(beanstalks):
+def display_results(results):
     """
-    Display thr beanstalk information
+    Display the results
     """
 
     table = PrettyTable()
@@ -101,15 +99,15 @@ def display_beanstalks(beanstalks):
                          'HealthStatus'
                         ]
 
-    for instance in beanstalks:
+    for item in results:
         table.add_row([
-                       instance['ApplicationName'],
-                       instance['EnvironmentName'],
-                       instance['SolutionStackName'],
-                       instance['VersionLabel'],
-                       instance['Status'],
-                       instance['Health'],
-                       instance['HealthStatus'],
+                       item['ApplicationName'],
+                       item['EnvironmentName'],
+                       item['SolutionStackName'],
+                       item['VersionLabel'],
+                       item['Status'],
+                       item['Health'],
+                       item['HealthStatus'],
                       ])
 
     table.sortby = 'Application'

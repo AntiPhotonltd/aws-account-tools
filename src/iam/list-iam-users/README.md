@@ -1,19 +1,19 @@
-List S3 Buckets
+List IAM Users
 =========
 
 ## Simple Usage
 
 ```
-./list-s3-buckets.py
+./list-iam-users.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-s3-buckets.py [-h]
+usage: list-iam-users.py [-h]
 
-List S3 Buckets
+List IAM Users
 
 optional arguments:
   -h, --help  show this help message and exit

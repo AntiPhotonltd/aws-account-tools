@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all EC2 instances
-
 Example Usage:
 
     ./list-ec2-instances.py
@@ -39,8 +37,8 @@ def main(cmdline=None):
     else:
         client = boto3.client('ec2')
 
-    ec2_instances = get_ec2_instances(client, args.all)
-    display_ec2_instances(ec2_instances)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -68,12 +66,12 @@ def get_tag_value(tags, key):
     return unknown_string
 
 
-def get_ec2_instances(client, all):
+def query_api(client, arg):
     """
-    Query a list of current EC2 instances
+    Query the API
     """
 
-    ec2_instances = []
+    results = []
 
     try:
         response = client.describe_instances()
@@ -87,23 +85,23 @@ def get_ec2_instances(client, all):
             for reservation in reservations:
                 if 'Instances' in reservation:
                     for instance in reservation['Instances']:
-                        if instance['State']['Name'] == 'running' or all:
-                            ec2_instances.append({
-                                                  'Name': get_tag_value(instance['Tags'], 'Name') if 'Tags' in instance else unknown_string,
-                                                  'InstanceId': instance['InstanceId'] if 'InstanceId' in instance else unknown_string,
-                                                  'InstanceType': instance['InstanceType'] if 'InstanceType' in instance else unknown_string,
-                                                  'PrivateIpAddress': instance['PrivateIpAddress'] if 'PrivateIpAddress' in instance else unknown_string,
-                                                  'AvailabilityZone': instance['Placement']['AvailabilityZone'] if 'AvailabilityZone' in instance['Placement'] else unknown_string,
-                                                  'State': instance['State']['Name'] if 'Name' in instance['State'] else unknown_string,
-                                                  'VpcId': instance['VpcId'] if 'VpcId' in instance else unknown_string,
-                                                  'KeyName': instance['KeyName'] if 'KeyName' in instance else unknown_string,
-                                                 })
-    return ec2_instances
+                        if instance['State']['Name'] == 'running' or args.all:
+                            results.append({
+                                            'Name': get_tag_value(instance['Tags'], 'Name') if 'Tags' in instance else unknown_string,
+                                            'InstanceId': instance['InstanceId'] if 'InstanceId' in instance else unknown_string,
+                                            'InstanceType': instance['InstanceType'] if 'InstanceType' in instance else unknown_string,
+                                            'PrivateIpAddress': instance['PrivateIpAddress'] if 'PrivateIpAddress' in instance else unknown_string,
+                                            'AvailabilityZone': instance['Placement']['AvailabilityZone'] if 'AvailabilityZone' in instance['Placement'] else unknown_string,
+                                            'State': instance['State']['Name'] if 'Name' in instance['State'] else unknown_string,
+                                            'VpcId': instance['VpcId'] if 'VpcId' in instance else unknown_string,
+                                            'KeyName': instance['KeyName'] if 'KeyName' in instance else unknown_string,
+                                           })
+    return results
 
 
-def display_ec2_instances(ec2_instances):
+def display_results(results):
     """
-    Display all the key pairs
+    Display the results
     """
 
     table = PrettyTable()
@@ -119,16 +117,16 @@ def display_ec2_instances(ec2_instances):
                          'SSH Key Name',
                         ]
 
-    for instance in ec2_instances:
+    for item in results:
         table.add_row([
-                       instance['Name'],
-                       instance['State'],
-                       instance['AvailabilityZone'],
-                       instance['InstanceId'],
-                       instance['InstanceType'],
-                       instance['PrivateIpAddress'],
-                       instance['VpcId'],
-                       instance['KeyName'],
+                       item['Name'],
+                       item['State'],
+                       item['AvailabilityZone'],
+                       item['InstanceId'],
+                       item['InstanceType'],
+                       item['PrivateIpAddress'],
+                       item['VpcId'],
+                       item['KeyName'],
                       ])
 
     table.sortby = 'Name'

@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all KSM keys
-
 Example Usage:
 
     ./list-kms-keys.py
@@ -39,8 +37,8 @@ def main(cmdline=None):
     else:
         client = boto3.client('kms')
 
-    kms_keys = get_kms_keys(client)
-    display_kms_keys(kms_keys)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -55,12 +53,12 @@ def make_parser():
     return parser
 
 
-def get_kms_keys(client):
+def query_api(client, args):
     """
-    Query a list of KMS keys
+    Query the API
     """
 
-    kms_keys = []
+    results = []
 
     try:
         response = client.list_keys()
@@ -71,16 +69,16 @@ def get_kms_keys(client):
     else:
         if 'Keys' in response:
             for key in response['Keys']:
-                kms_keys.append({
-                                 'KeyId': key['KeyId'] if 'KeyId' in key else unknown_string,
-                                 'KeyArn': key['KeyArn'] if 'KeyArn' in key else unknown_string,
-                                })
-    return kms_keys
+                results.append({
+                                'KeyId': key['KeyId'] if 'KeyId' in key else unknown_string,
+                                'KeyArn': key['KeyArn'] if 'KeyArn' in key else unknown_string,
+                               })
+    return results
 
 
-def display_kms_keys(kms_keys):
+def display_results(results):
     """
-    Display all the KMS keys
+    Display the results
     """
 
     table = PrettyTable()
@@ -90,10 +88,10 @@ def display_kms_keys(kms_keys):
                          'Key ARN'
                         ]
 
-    for key in kms_keys:
+    for item in results:
         table.add_row([
-                       key['KeyId'],
-                       key['KeyArn']
+                       item['KeyId'],
+                       item['KeyArn']
                       ])
 
     table.sortby = 'Key ID'

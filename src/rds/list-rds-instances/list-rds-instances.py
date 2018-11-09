@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing the available RDS instances.
-
 Example Usage:
 
     ./list-rds-instances.py
@@ -39,8 +37,8 @@ def main(cmdline=None):
     else:
         client = boto3.client('rds')
 
-    rds_instances = get_rds_instances(client)
-    display_rds_instances(rds_instances)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -55,12 +53,12 @@ def make_parser():
     return parser
 
 
-def get_rds_instances(client):
+def query_api(client, args):
     """
-    Query a list of current RDS instances and their details
+    Query the API
     """
 
-    rds_instances = []
+    results = []
 
     try:
         response = client.describe_db_instances()
@@ -79,24 +77,24 @@ def get_rds_instances(client):
                 else:
                     AZS = unknown_string
 
-                rds_instances.append({
-                                      'InstanceName': instance['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in instance else unknown_string,
-                                      'InstanceClass': instance['DBInstanceClass'] if 'DBInstanceClass' in instance else unknown_string,
-                                      'Status': instance['DBInstanceStatus'] if 'DBInstanceStatus' in instance else unknown_string,
-                                      'AvailabilityZone': AZS,
-                                      'PubliclyAccessible': instance['PubliclyAccessible'] if 'PubliclyAccessible' in instance else unknown_string,
-                                      'AllocatedStorage': instance['AllocatedStorage'] if 'AllocatedStorage' in instance else unknown_string,
-                                      'StorageEncrypted': instance['StorageEncrypted'] if 'StorageEncrypted' in instance else unknown_string,
-                                      'Engine': instance['Engine'] if 'Engine' in instance else unknown_string,
-                                      'EngineVersion': instance['EngineVersion'] if 'EngineVersion' in instance else unknown_string,
-                                      'PerformanceInsightsEnabled': instance['PerformanceInsightsEnabled'] if 'PerformanceInsightsEnabled' in instance else unknown_string,
-                                     })
-    return rds_instances
+                results.append({
+                                'InstanceName': instance['DBInstanceIdentifier'] if 'DBInstanceIdentifier' in instance else unknown_string,
+                                'InstanceClass': instance['DBInstanceClass'] if 'DBInstanceClass' in instance else unknown_string,
+                                'Status': instance['DBInstanceStatus'] if 'DBInstanceStatus' in instance else unknown_string,
+                                'AvailabilityZone': AZS,
+                                'PubliclyAccessible': instance['PubliclyAccessible'] if 'PubliclyAccessible' in instance else unknown_string,
+                                'AllocatedStorage': instance['AllocatedStorage'] if 'AllocatedStorage' in instance else unknown_string,
+                                'StorageEncrypted': instance['StorageEncrypted'] if 'StorageEncrypted' in instance else unknown_string,
+                                'Engine': instance['Engine'] if 'Engine' in instance else unknown_string,
+                                'EngineVersion': instance['EngineVersion'] if 'EngineVersion' in instance else unknown_string,
+                                'PerformanceInsightsEnabled': instance['PerformanceInsightsEnabled'] if 'PerformanceInsightsEnabled' in instance else unknown_string,
+                               })
+    return results
 
 
-def display_rds_instances(rds_instances):
+def display_results(results):
     """
-    Display all the RDS instances
+    Display the results
     """
 
     table = PrettyTable()
@@ -114,18 +112,18 @@ def display_rds_instances(rds_instances):
                          'Performance Insights'
                         ]
 
-    for instance in rds_instances:
+    for item in results:
         table.add_row([
-                       instance['InstanceName'],
-                       instance['InstanceClass'],
-                       instance['Status'],
-                       instance['AvailabilityZone'],
-                       instance['PubliclyAccessible'],
-                       '%s GB' % instance['AllocatedStorage'],
-                       instance['StorageEncrypted'],
-                       instance['Engine'],
-                       instance['EngineVersion'],
-                       instance['PerformanceInsightsEnabled']
+                       item['InstanceName'],
+                       item['InstanceClass'],
+                       item['Status'],
+                       item['AvailabilityZone'],
+                       item['PubliclyAccessible'],
+                       '%s GB' % item['AllocatedStorage'],
+                       item['StorageEncrypted'],
+                       item['Engine'],
+                       item['EngineVersion'],
+                       item['PerformanceInsightsEnabled']
                       ])
 
     table.sortby = 'Instance Name'

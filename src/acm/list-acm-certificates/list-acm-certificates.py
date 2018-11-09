@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all certificates from ACM
-
 Example Usage:
 
-    ./list-certificates.py
+    ./list-acm-certificates.py
 """
 
 from __future__ import print_function
@@ -36,8 +34,8 @@ def main(cmdline=None):
 
     client = boto3.client('acm')
 
-    certificates = get_certificates(client)
-    display_certificates(certificates)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -46,17 +44,17 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Certificates')
+    parser = argparse.ArgumentParser(description='List ACM Certificates')
 
     return parser
 
 
-def get_certificates(client):
+def query_api(client, args):
     """
-    Query a list of certificates
+    Query the API
     """
 
-    certificates = []
+    results = []
 
     try:
         response = client.list_certificates()
@@ -67,16 +65,16 @@ def get_certificates(client):
     else:
         if 'CertificateSummaryList' in response:
             for cert in response['CertificateSummaryList']:
-                certificates.append({
-                                     'CertificateArn': cert['CertificateArn'] if 'CertificateArn' in cert else unknown_string,
-                                     'DomainName': cert['DomainName'] if 'DomainName' in cert else unknown_string
-                                    })
-    return certificates
+                results.append({
+                                'CertificateArn': cert['CertificateArn'] if 'CertificateArn' in cert else unknown_string,
+                                'DomainName': cert['DomainName'] if 'DomainName' in cert else unknown_string
+                               })
+    return results
 
 
-def display_certificates(certificates):
+def display_results(results):
     """
-    Display all the certificates
+    Display the results
     """
 
     table = PrettyTable()
@@ -86,10 +84,10 @@ def display_certificates(certificates):
                          'Certificate Arn'
                         ]
 
-    for cert in certificates:
+    for item in results:
         table.add_row([
-                       cert['DomainName'],
-                       cert['CertificateArn']
+                       item['DomainName'],
+                       item['CertificateArn']
                       ])
 
     table.sortby = 'Domain Name'

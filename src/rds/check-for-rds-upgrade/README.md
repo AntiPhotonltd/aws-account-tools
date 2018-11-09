@@ -1,12 +1,10 @@
-Check all RDS Instances
+Check for RDS Upgrade
 =========
-
-This is a simple script to retrieve a list of all RDS instances that have upgrades available.
 
 ## Simple Usage
 
 ```
-./check-all-rds-instances.py
+./check-for-rds-upgrade.py
 ```
 
 ## Command Line Options
@@ -25,17 +23,4 @@ optional arguments:
                         The aws region
   -s, --silent          Surpress all output
 
-```
-
-## Information Displayed
-
-The following information is displayed in table form for all the RDS instances located.
-
-```
-Instance Name
-Engine
-Engine Version
-Latest in PLace Upgrade
-Latest Upgrade
-Upgrade Available
 ```

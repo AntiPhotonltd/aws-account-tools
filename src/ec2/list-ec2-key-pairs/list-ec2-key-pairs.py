@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all EC2 Key Pairs
-
 Example Usage:
 
-    ./list-key-pairs.py
+    ./list-ec2-key-pairs.py
 """
 
 from __future__ import print_function
@@ -39,8 +37,8 @@ def main(cmdline=None):
     else:
         client = boto3.client('ec2')
 
-    key_pairs = get_key_pairs(client)
-    display_key_pairs(key_pairs)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -49,18 +47,18 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Key Pairs')
+    parser = argparse.ArgumentParser(description='List EC2 Key Pairs')
     parser.add_argument('-r', '--region', help='The aws region')
 
     return parser
 
 
-def get_key_pairs(client):
+def query_api(client, args):
     """
-    Query a list of current key pairs
+    Query the API
     """
 
-    key_pairs = []
+    results = []
 
     try:
         response = client.describe_key_pairs()
@@ -71,16 +69,16 @@ def get_key_pairs(client):
     else:
         if 'KeyPairs' in response:
             for kp in response['KeyPairs']:
-                key_pairs.append({
-                                  'KeyName': kp['KeyName'] if 'KeyName' in kp else unknown_string,
-                                  'KeyFingerprint': kp['KeyFingerprint'] if 'KeyFingerprint' in kp else unknown_string
-                                 })
-    return key_pairs
+                results.append({
+                                'KeyName': kp['KeyName'] if 'KeyName' in kp else unknown_string,
+                                'KeyFingerprint': kp['KeyFingerprint'] if 'KeyFingerprint' in kp else unknown_string
+                               })
+    return results
 
 
-def display_key_pairs(key_pairs):
+def display_results(results):
     """
-    Display all the key pairs
+    Display the results
     """
 
     table = PrettyTable()
@@ -90,10 +88,10 @@ def display_key_pairs(key_pairs):
                          'Fingerprint'
                         ]
 
-    for kp in key_pairs:
+    for item in results:
         table.add_row([
-                       kp['KeyName'],
-                       kp['KeyFingerprint'],
+                       item['KeyName'],
+                       item['KeyFingerprint'],
                       ])
 
     table.sortby = 'Key Name'

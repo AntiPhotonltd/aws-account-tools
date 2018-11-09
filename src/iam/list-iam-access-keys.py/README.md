@@ -1,19 +1,19 @@
-List S3 Buckets
+List IAM Access Keys
 =========
 
 ## Simple Usage
 
 ```
-./list-s3-buckets.py
+./list-iam-access-keys.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-s3-buckets.py [-h]
+usage: list-iam-access-keys.py [-h]
 
-List S3 Buckets
+List IAM Access Keys
 
 optional arguments:
   -h, --help  show this help message and exit

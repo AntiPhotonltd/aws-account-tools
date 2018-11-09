@@ -1,7 +1,5 @@
-List EC@ Instance
+List EC2 Instances
 =========
-
-This is a simple script to retrieve a list of EC2 key pairs
 
 ## Simple Usage
 
@@ -23,19 +21,4 @@ optional arguments:
   -r REGION, --region REGION
                         The aws region
 
-```
-
-## Information Displayed
-
-The following information is displayed in table form for all the EC2 instances located.
-
-```
-Name
-State
-Availability Zone
-Instance ID
-Instance Type
-Private IP
-VPC ID
-SSH Key Name
 ```

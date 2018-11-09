@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all users from AIM
-
 Example Usage:
 
-    ./list-users.py
+    ./list-iam-users.py
 """
 
 from __future__ import print_function
@@ -36,8 +34,8 @@ def main(cmdline=None):
 
     client = boto3.client('iam')
 
-    users = get_users(client)
-    display_users(users)
+    results = query_api(client, args)
+    display_results(results)
 
 
 def make_parser():
@@ -46,17 +44,17 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Users')
+    parser = argparse.ArgumentParser(description='List IAM Users')
 
     return parser
 
 
-def get_users(client):
+def query_api(client, args):
     """
-    Query a list of current local users from IAM
+    Query the API
     """
 
-    users = []
+    results = []
 
     try:
         response = client.list_users()
@@ -67,20 +65,20 @@ def get_users(client):
     else:
         if 'Users' in response:
             for user in response['Users']:
-                users.append({
-                              'UserName': user['UserName'] if 'UserName' in user else unknown_string,
-                              'Path': user['Path'] if 'Path' in user else unknown_string,
-                              'CreateDate': user['CreateDate'] if 'CreateDate' in user else unknown_string,
-                              'UserId': user['UserId'] if 'UserId' in user else unknown_string,
-                              'Arn': user['Arn'] if 'Arn' in user else unknown_string,
-                              'PasswordLastUsed': user['PasswordLastUsed'] if 'PasswordLastUsed' in user else empty_string,
-                             })
-    return users
+                results.append({
+                                'UserName': user['UserName'] if 'UserName' in user else unknown_string,
+                                'Path': user['Path'] if 'Path' in user else unknown_string,
+                                'CreateDate': user['CreateDate'] if 'CreateDate' in user else unknown_string,
+                                'UserId': user['UserId'] if 'UserId' in user else unknown_string,
+                                'Arn': user['Arn'] if 'Arn' in user else unknown_string,
+                                'PasswordLastUsed': user['PasswordLastUsed'] if 'PasswordLastUsed' in user else empty_string,
+                               })
+    return results
 
 
-def display_users(users):
+def display_results(results):
     """
-    Display all the users
+    Display  the results
     """
 
     table = PrettyTable()
@@ -94,14 +92,14 @@ def display_users(users):
                          'Password Last Used'
                         ]
 
-    for user in users:
+    for item in results:
         table.add_row([
-                       user['UserName'],
-                       user['Path'],
-                       user['CreateDate'],
-                       user['UserId'],
-                       user['Arn'],
-                       user['PasswordLastUsed']
+                       item['UserName'],
+                       item['Path'],
+                       item['CreateDate'],
+                       item['UserId'],
+                       item['Arn'],
+                       item['PasswordLastUsed']
                       ])
 
     table.sortby = 'UserName'
