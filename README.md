@@ -44,19 +44,19 @@ A collection of simply tools for managing and auditing AWS.
 
 **********
 
-| Name | AWS Resource | Documentation |
+| Name | AWS CLI Reference | Documentation |
 | --- | --- | --- |
-| [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | ACM | [README.md](src/acm/list-certificates/README.md)
-| [list-key-pairs.py](src/ec2/list-key-pairs/list-key-pairs.py) | EC2 | [README.md](src/ec2/list-key-pairs/README.md)
-| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | Elastic Beanstalk | [README.md](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)
-| [list-beanstalks.py](src/elasticbeanstalk/list-beanstalks/list-beanstalks.py) | Elastic Beanstalk | [README.md](src/elasticbeanstalk/list-beanstalks/README.md)
-| [list-access-keys.py](src/iam/list-access-keys/list-access-keys.py) | IAM | [README.md](src/iam/list-access-keys/README.md)
-| [list-roles.py](src/iam/list-roles/list-roles.py) | IAM | [README.md](src/iam/list-roles/README.md)
-| [list-users.py](src/iam/list-users/list-users.py) | IAM | [README.md](src/iam/list-users/README.md)
-| [list-kms-keys.py](src/kms/list-kms-keys/list-kms-keys.py) | KSM | [README.md](src/kms/list-kms-keys/README.md)
-| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | RDS | [README.md](src/rds/check-for-rds-upgrade/README.md) |
-| [list-rds-instances.py](src/rds/list-rds-instances/list-rds-instances.py) | RDS | [README.md](src/rds/list-rds-instances/README.md) |
-| [list-s3-buckets.py](src/s3/list-s3-buckets/list-s3-buckets.py) | S3 | [README.md](src/s3/list-s3-buckets/README.md) |
+| [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | [acm](https://docs.aws.amazon.com/cli/latest/reference/acm/index.html) | [README.md](src/acm/list-certificates/README.md)
+| [list-key-pairs.py](src/ec2/list-key-pairs/list-key-pairs.py) | [ec2](https://docs.aws.amazon.com/cli/latest/reference/ec2/index.html) | [README.md](src/ec2/list-key-pairs/README.md)
+| [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | [elasticbeanstalk](https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/index.html) | [README.md](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)
+| [list-beanstalks.py](src/elasticbeanstalk/list-beanstalks/list-beanstalks.py) | [elasticbeanstalk](https://docs.aws.amazon.com/cli/latest/reference/elasticbeanstalk/index.html) | [README.md](src/elasticbeanstalk/list-beanstalks/README.md)
+| [list-access-keys.py](src/iam/list-access-keys/list-access-keys.py) | [iam](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html) | [README.md](src/iam/list-access-keys/README.md)
+| [list-roles.py](src/iam/list-roles/list-roles.py) | [iam](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html) | [README.md](src/iam/list-roles/README.md)
+| [list-users.py](src/iam/list-users/list-users.py) | [iam](https://docs.aws.amazon.com/cli/latest/reference/iam/index.html) | [README.md](src/iam/list-users/README.md)
+| [list-kms-keys.py](src/kms/list-kms-keys/list-kms-keys.py) | [kms](https://docs.aws.amazon.com/cli/latest/reference/kms/index.html) | [README.md](src/kms/list-kms-keys/README.md)
+| [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | [rds](https://docs.aws.amazon.com/cli/latest/reference/rds/index.html) | [README.md](src/rds/check-for-rds-upgrade/README.md) |
+| [list-rds-instances.py](src/rds/list-rds-instances/list-rds-instances.py) | [rds](https://docs.aws.amazon.com/cli/latest/reference/rds/index.html) | [README.md](src/rds/list-rds-instances/README.md) |
+| [list-s3-buckets.py](src/s3/list-s3-buckets/list-s3-buckets.py) | [s3](https://docs.aws.amazon.com/cli/latest/reference/s3/index.html) | [README.md](src/s3/list-s3-buckets/README.md) |
 
 **********
 
