@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all EC2 Key Pairs
+This is a simple script for listing all certificates from ACM
 
 Example Usage:
 
-    ./list-key-pairs.py
+    ./list-certificates.py
 """
 
 from __future__ import print_function
@@ -34,13 +34,10 @@ def main(cmdline=None):
 
     args = parser.parse_args(cmdline)
 
-    if args.region:
-        client = boto3.client('ec2', region_name=args.region)
-    else:
-        client = boto3.client('ec2')
+    client = boto3.client('acm')
 
-    key_pairs = get_key_pairs(client)
-    display_key_pairs(key_pairs)
+    certificates = get_certificates(client)
+    display_certificates(certificates)
 
 
 def make_parser():
@@ -49,54 +46,53 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Key Pairs')
-    parser.add_argument('-r', '--region', help='The aws region')
+    parser = argparse.ArgumentParser(description='List Certificates')
 
     return parser
 
 
-def get_key_pairs(client):
+def get_certificates(client):
     """
-    Query a list of current key pairs
+    Query a list of certificates
     """
 
-    key_pairs = []
+    certificates = []
 
     try:
-        response = client.describe_key_pairs()
+        response = client.list_certificates()
     except EndpointConnectionError as e:
         print("ERROR: %s (Probably an invalid region!)" % e)
     except Exception as e:
         print("Unknown error: " + str(e))
     else:
-        if 'KeyPairs' in response:
-            for kp in response['KeyPairs']:
-                key_pairs.append({
-                                  'KeyName': kp['KeyName'] if 'KeyName' in kp else unknown_string,
-                                  'KeyFingerprint': kp['KeyFingerprint'] if 'KeyFingerprint' in kp else unknown_string
-                                 })
-    return key_pairs
+        if 'CertificateSummaryList' in response:
+            for cert in response['CertificateSummaryList']:
+                certificates.append({
+                                     'CertificateArn': cert['CertificateArn'] if 'CertificateArn' in cert else unknown_string,
+                                     'DomainName': cert['DomainName'] if 'DomainName' in cert else unknown_string
+                                    })
+    return certificates
 
 
-def display_key_pairs(key_pairs):
+def display_certificates(certificates):
     """
-    Display all the key pairs
+    Display all the certificates
     """
 
     table = PrettyTable()
 
     table.field_names = [
-                         'Key Name',
-                         'Fingerprint'
+                         'Domain Name',
+                         'Certificate Arn'
                         ]
 
-    for kp in key_pairs:
+    for cert in certificates:
         table.add_row([
-                       kp['KeyName'],
-                       kp['KeyFingerprint'],
+                       cert['DomainName'],
+                       cert['CertificateArn']
                       ])
 
-    table.sortby = 'Key Name'
+    table.sortby = 'Domain Name'
     print(table)
 
 

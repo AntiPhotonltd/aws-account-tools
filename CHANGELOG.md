@@ -1,3 +1,12 @@
+## 1.0.4 (Unreleased)
+
+CHANGES:
+
+* Added a new section for ACM scripts. ([@TGWolf][])
+* Added a new section for S3 scripts. ([@TGWolf][])
+* Added a new script acm/list-certificates.py. ([@TGWolf][])
+* Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
+
 ## 1.0.3 (November 7, 2018)
 
 CHANGES:

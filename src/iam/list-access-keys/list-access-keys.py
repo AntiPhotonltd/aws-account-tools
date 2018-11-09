@@ -5,7 +5,7 @@ This is a simple script for listing all access keys from IAM
 
 Example Usage:
 
-    ./list-all-users.py
+    ./list-access-keys.py
 """
 
 from __future__ import print_function
@@ -36,8 +36,8 @@ def main(cmdline=None):
 
     client = boto3.client('iam')
 
-    access_keys = get_all_access_keys(client)
-    display_all_access_keys(access_keys)
+    access_keys = get_access_keys(client)
+    display_access_keys(access_keys)
 
 
 def make_parser():
@@ -46,12 +46,12 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List all Access Keys')
+    parser = argparse.ArgumentParser(description='List Access Keys')
 
     return parser
 
 
-def get_all_access_keys(client):
+def get_access_keys(client):
     """
     Query a list of current access keys
     """
@@ -76,9 +76,9 @@ def get_all_access_keys(client):
     return access_keys
 
 
-def display_all_access_keys(access_keys):
+def display_access_keys(access_keys):
     """
-    Display all the users
+    Display the access keys
     """
 
     table = PrettyTable()

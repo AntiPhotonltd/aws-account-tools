@@ -5,7 +5,7 @@ This is a simple script for listing all roles from AIM
 
 Example Usage:
 
-    ./list-all-users.py
+    ./list-roles.py
 """
 
 from __future__ import print_function

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-This is a simple script for listing all EC2 Key Pairs
+This is a simple script for listing all S3 buckets
 
 Example Usage:
 
-    ./list-key-pairs.py
+    ./list-s3-buckets.py
 """
 
 from __future__ import print_function
@@ -34,13 +34,10 @@ def main(cmdline=None):
 
     args = parser.parse_args(cmdline)
 
-    if args.region:
-        client = boto3.client('ec2', region_name=args.region)
-    else:
-        client = boto3.client('ec2')
+    client = boto3.client('s3')
 
-    key_pairs = get_key_pairs(client)
-    display_key_pairs(key_pairs)
+    s3_buckets = get_s3_buckets(client)
+    display_s3_buckets(s3_buckets)
 
 
 def make_parser():
@@ -49,54 +46,53 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List Key Pairs')
-    parser.add_argument('-r', '--region', help='The aws region')
+    parser = argparse.ArgumentParser(description='List S3 Buckets')
 
     return parser
 
 
-def get_key_pairs(client):
+def get_s3_buckets(client):
     """
-    Query a list of current key pairs
+    Query a list of current buckets
     """
 
-    key_pairs = []
+    s3_buckets = []
 
     try:
-        response = client.describe_key_pairs()
+        response = client.list_buckets()
     except EndpointConnectionError as e:
         print("ERROR: %s (Probably an invalid region!)" % e)
     except Exception as e:
         print("Unknown error: " + str(e))
     else:
-        if 'KeyPairs' in response:
-            for kp in response['KeyPairs']:
-                key_pairs.append({
-                                  'KeyName': kp['KeyName'] if 'KeyName' in kp else unknown_string,
-                                  'KeyFingerprint': kp['KeyFingerprint'] if 'KeyFingerprint' in kp else unknown_string
-                                 })
-    return key_pairs
+        if 'Buckets' in response:
+            for bucket in response['Buckets']:
+                s3_buckets.append({
+                                   'Name': bucket['Name'] if 'Name' in bucket else unknown_string,
+                                   'CreationDate': bucket['CreationDate'] if 'CreationDate' in bucket else unknown_string,
+                                  })
+    return s3_buckets
 
 
-def display_key_pairs(key_pairs):
+def display_s3_buckets(s3_buckets):
     """
-    Display all the key pairs
+    Display all the buckets
     """
 
     table = PrettyTable()
 
     table.field_names = [
-                         'Key Name',
-                         'Fingerprint'
+                         'Name',
+                         'Date Created'
                         ]
 
-    for kp in key_pairs:
+    for bucket in s3_buckets:
         table.add_row([
-                       kp['KeyName'],
-                       kp['KeyFingerprint'],
+                       bucket['Name'],
+                       bucket['CreationDate']
                       ])
 
-    table.sortby = 'Key Name'
+    table.sortby = 'Name'
     print(table)
 
 
