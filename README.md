@@ -27,6 +27,7 @@ A collection of simply tools for managing and auditing AWS.
 | [list-lambda-functions.py](src/lambda/list-lambda-functions/list-lambda-functions.py) | [README](src/lambda/list-lambda-functions/README.md) | [lambda][L_lambda] |
 | [list-rds-instances.py](src/rds/list-rds-instances/list-rds-instances.py) | [README](src/rds/list-rds-instances/README.md) | [rds][L_rds] |
 | [list-s3-buckets.py](src/s3/list-s3-buckets/list-s3-buckets.py) | [README](src/s3/list-s3-buckets/README.md) | [s3][L_s3] |
+| [list-vpc-peers.py](src/ec2/list-vpc-peers/list-vpc-peers.py) | [README](src/ec2/list-vpc-peers/README.md) | [ec2][L_ec2] |
 | [list-vpcs.py](src/ec2/list-vpcs/list-vpcs.py) | [README](src/ec2/list-vpcs/README.md) | [ec2][L_ec2] |
 
 

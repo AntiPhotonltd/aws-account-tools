@@ -1,19 +1,19 @@
-List VPCs
+List VPC Peers
 =========
 
 ## Simple Usage
 
 ```
-./list-vpcs.py
+./list-vpc-peers.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-vpcs.py [-h] [-r REGION]
+usage: list-vpc-peers.py [-h] [-r REGION]
 
-List VPCs
+List VPC Peers
 
 optional arguments:
   -h, --help            show this help message and exit
