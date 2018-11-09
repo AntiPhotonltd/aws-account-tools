@@ -15,6 +15,7 @@ A collection of simply tools for managing and auditing AWS.
 | [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | [README](src/rds/check-for-rds-upgrade/README.md) | [rds][L_rds] |
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | [README](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)| [elasticbeanstalk][L_elasticbeanstalk] |
 | [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | [README](src/acm/list-certificates/README.md) | [acm][L_acm] |
+| [list-ebs-volumes.py](src/ec2/list-ebs-volumes/list-ebs-volumes.py) | [README](src/ec2/list-ebs-volumes/README.md) | [ec2][L_ec2] |
 | [list-ec2-instances.py](src/ec2/list-ec2-instances/list-ec2-instances.py) | [README](src/ec2/list-ec2-instances/README.md) | [ec2][L_ec2] |
 | [list-ec2-key-pairs.py](src/ec2/list-ec2-key-pairs/list-ec2-key-pairs.py) | [README](src/ec2/list-ec2-key-pairs/README.md) | [ec2][L_ec2] |
 | [list-elastic-beanstalks.py](src/elasticbeanstalk/list-elastic-beanstalks/list-elastic-beanstalks.py) | [README](src/elasticbeanstalk/list-elastic-beanstalks/README.md) | [elasticbeanstalk][L_elasticbeanstalk] |

@@ -1,19 +1,19 @@
-List VPCs
+List EBS Volumes
 =========
 
 ## Simple Usage
 
 ```
-./list-vpcs.py
+./list-ebs-volumes.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-ec2-key-pairs.py [-h] [-r REGION]
+usage: list-ebs-volumes.py [-h] [-r REGION]
 
-List VPCs
+List EBS Volumes
 
 optional arguments:
   -h, --help            show this help message and exit
