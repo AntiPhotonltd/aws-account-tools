@@ -3,17 +3,21 @@
 CHANGES:
 
 * Added a new section for acm scripts. ([@TGWolf][])
+* Added a new section for dynamodb scripts. ([@TGWolf][])
 * Added a new section for kinesis scripts. ([@TGWolf][])
 * Added a new section for kms scripts. ([@TGWolf][])
 * Added a new section for lambda scripts. ([@TGWolf][])
+* Added a new section for route53 scripts. ([@TGWolf][])
 * Added a new section for s3 scripts. ([@TGWolf][])
 * Added a new script acm/list-certificates.py. ([@TGWolf][])
+* Added a new script dynamodb/list-dynamodb-tables.py. ([@TGWolf][])
 * Added a new script ec2/list-ebs-volumes.py. ([@TGWolf][])
 * Added a new script ec2/list-vpcs.py. ([@TGWolf][])
 * Added a new script ec2/list-vpc-peers.py. ([@TGWolf][])
 * Added a new script kinesis/list-kinesis-streams.py. ([@TGWolf][])
 * Added a new script kms/list-kms-keys.py. ([@TGWolf][])
 * Added a new script lambda/list-lambda-functions.py ([@TGWolf][])
+* Added a new script route53/list-route53-hosted-zones.py ([@TGWolf][])
 * Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
 * General tidy up of all scripts and internal docs / readme files. ([@TGWolf][])
 

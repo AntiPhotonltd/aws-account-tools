@@ -1,19 +1,19 @@
-List Kinesis Streams
+List Dynamodb Tables
 =========
 
 ## Simple Usage
 
 ```
-./list-kinesis-streams.py
+./list-dynamodb-tables.py
 ```
 
 ## Command Line Options
 
 ```
 
-usage: list-kinesis-streams.py [-h] [-r REGION]
+usage: list-dynamodb-tables.py [-h] [-r REGION]
 
-List Kinesis Streams
+List Dynamodb Tables
 
 optional arguments:
   -h, --help            show this help message and exit
