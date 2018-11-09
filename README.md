@@ -18,8 +18,8 @@ A collection of simply tools for managing and auditing AWS.
 | [list-ec2-key-pairs.py](src/ec2/list-ec2-key-pairs/list-ec2-key-pairs.py) | [README](src/ec2/list-ec2-key-pairs/README.md) | [ec2][L_ec2] |
 | [list-elastic-beanstalks.py](src/elasticbeanstalk/list-elastic-beanstalks/list-elastic-beanstalks.py) | [README](src/elasticbeanstalk/list-elastic-beanstalks/README.md) | [elasticbeanstalk][L_elasticbeanstalk] |
 | [list-iam-access-keys.py](src/iam/list-iam-access-keys/list-iam-access-keys.py) | [README](src/iam/list-iam-access-keys/README.md) | [iam][L_iam] |
-| [list-iam-roles.py](src/iam/list-iam-roles/list-roles.py) | [README](src/iam/list-iam-roles/README.md) | [iam][L_iam] |
-| [list-iam-users.py](src/iam/list-iam-users/list-users.py) | [README](src/iam/list-iam-users/README.md) | [iam][L_iam] |
+| [list-iam-roles.py](src/iam/list-iam-roles/list-iam-roles.py) | [README](src/iam/list-iam-roles/README.md) | [iam][L_iam] |
+| [list-iam-users.py](src/iam/list-iam-users/list-iam-users.py) | [README](src/iam/list-iam-users/README.md) | [iam][L_iam] |
 | [list-kms-keys.py](src/kms/list-kms-keys/list-kms-keys.py) | [README](src/kms/list-kms-keys/README.md) | [kms][L_kms] |
 | [list-rds-instances.py](src/rds/list-rds-instances/list-rds-instances.py) | [README](src/rds/list-rds-instances/README.md) | [rds][L_rds] |
 | [list-s3-buckets.py](src/s3/list-s3-buckets/list-s3-buckets.py) | [README](src/s3/list-s3-buckets/README.md) | [s3][L_s3] |
