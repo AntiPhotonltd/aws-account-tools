@@ -124,8 +124,6 @@ def display_results(results):
                        parts['CreateTime'],
                       ])
 
-
-
     table.sortby = 'Name'
     print(table)
 
