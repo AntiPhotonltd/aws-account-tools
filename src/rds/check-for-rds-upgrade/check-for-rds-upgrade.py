@@ -139,6 +139,7 @@ def get_latest_upgrade(client, instance):
 
     return latest_upgrade
 
+
 def get_possible_upgrades(client, current_versions, all_databases):
     """
     Check each RDS instance to see if there is an upgrade available
@@ -155,7 +156,7 @@ def get_possible_upgrades(client, current_versions, all_databases):
         is_upgrade_available = True if in_place_upgrade_available or upgrade_available else False
 
         if is_upgrade_available:
-          real_upgrades += 1
+            real_upgrades += 1
 
         if all_databases or is_upgrade_available:
             possible_upgrades.append({
