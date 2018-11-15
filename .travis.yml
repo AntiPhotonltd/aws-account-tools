@@ -40,9 +40,9 @@ matrix:
   - language: ruby
     rvm: 2.2
     install:
-      - "./travis/markdown/install.sh"
+      - "./travis/awesomebot/install.sh"
     script: 
-      - "./travis/markdown/build.sh"
+      - "./travis/awesomebot/build.sh"
 notifications:
   email: false
   slack:
