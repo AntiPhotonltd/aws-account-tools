@@ -20,6 +20,8 @@ CHANGES:
 * Added a new script route53/list-route53-hosted-zones.py ([@TGWolf][])
 * Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
 * General tidy up of all scripts and internal docs / readme files. ([@TGWolf][])
+* Updated the awesomebot_travis submodule. ([@TGWolf][])
+* Updated the python_travis submodule. ([@TGWolf][])
 
 ## 1.0.3 (November 7, 2018)
 

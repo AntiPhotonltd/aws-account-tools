@@ -1,55 +1,48 @@
+sudo: required
+
 matrix:
   include:
   - language: python
     python: 2.7
     os: linux
-    sudo: required
     install:
-    - pip install -r requirements.txt
+      - "./travis/python/install.sh"
     script:
-    - find src/ -type f -name "*.py" | while read file; do echo "Linting $file"; pycodestyle
-      $file; done
+      - "./travis/python/build.sh"
   - language: python
     python: 3.3
     os: linux
-    sudo: required
     install:
-    - pip install -r requirements.txt
+      - "./travis/python/install.sh"
     script:
-    - find src/ -type f -name "*.py" | while read file; do echo "Linting $file"; pycodestyle
-      $file; done
+      - "./travis/python/build.sh"
   - language: python
     python: 3.4
     os: linux
-    sudo: required
     install:
-    - pip install -r requirements.txt
+      - "./travis/python/install.sh"
     script:
-    - find src/ -type f -name "*.py" | while read file; do echo "Linting $file"; pycodestyle
-      $file; done
+      - "./travis/python/build.sh"
   - language: python
     python: 3.5
     os: linux
-    sudo: required
     install:
-    - pip install -r requirements.txt
+      - "./travis/python/install.sh"
     script:
-    - find src/ -type f -name "*.py" | while read file; do echo "Linting $file"; pycodestyle
-      $file; done
+      - "./travis/python/build.sh"
   - language: python
     python: 3.6
     os: linux
-    sudo: required
     install:
-    - pip install -r requirements.txt
+      - "./travis/python/install.sh"
     script:
-    - find src/ -type f -name "*.py" | while read file; do echo "Linting $file"; pycodestyle
-      $file; done
+      - "./travis/python/build.sh"
   - language: ruby
     rvm: 2.2
-    before_script: gem install awesome_bot
-    script: find . -type f -name "*.md" | while read file; do awesome_bot $file --allow-redirect
-      --allow-dupe -w github.com/AntiPhotonltd/aws-tools/; done
+    install:
+      - "./travis/markdown/install.sh"
+    script: 
+      - "./travis/markdown/build.sh"
 notifications:
   email: false
   slack:
