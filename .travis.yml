@@ -5,40 +5,58 @@ matrix:
   - language: python
     python: 2.7
     os: linux
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
     install:
-      - "./travis/python/install.sh"
+      - "./travis/pycodetyle/install.sh"
     script:
-      - "./travis/python/build.sh"
+      - "./travis/pycodetyle/build.sh"
   - language: python
     python: 3.3
     os: linux
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
     install:
-      - "./travis/python/install.sh"
+      - "./travis/pycodetyle/install.sh"
     script:
-      - "./travis/python/build.sh"
+      - "./travis/pycodetyle/build.sh"
   - language: python
     python: 3.4
     os: linux
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
     install:
-      - "./travis/python/install.sh"
+      - "./travis/pycodetyle/install.sh"
     script:
-      - "./travis/python/build.sh"
+      - "./travis/pycodetyle/build.sh"
   - language: python
     python: 3.5
     os: linux
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
     install:
-      - "./travis/python/install.sh"
+      - "./travis/pycodetyle/install.sh"
     script:
-      - "./travis/python/build.sh"
+      - "./travis/pycodetyle/build.sh"
   - language: python
     python: 3.6
     os: linux
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
     install:
-      - "./travis/python/install.sh"
+      - "./travis/pycodetyle/install.sh"
     script:
-      - "./travis/python/build.sh"
+      - "./travis/pycodetyle/build.sh"
   - language: ruby
     rvm: 2.2
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/awesomebot-travis.git travis/awesomebot
     install:
       - "./travis/awesomebot/install.sh"
     script: 

@@ -1,6 +1,0 @@
-[submodule "travis/awesomebot"]
-	path = travis/awesomebot
-	url = https://github.com/TravisToolbox/awesomebot-travis.git
-[submodule "travis/python"]
-	path = travis/python
-	url = https://github.com/TravisToolbox/pycodestyle-travis.git
