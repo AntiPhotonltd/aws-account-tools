@@ -79,6 +79,7 @@ def get_tags(tags):
 
     return tag_str
 
+
 def query_api(client, args):
     """
     Query the API
