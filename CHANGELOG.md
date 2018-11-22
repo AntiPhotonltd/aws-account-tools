@@ -1,3 +1,9 @@
+## 1.0.7 (Unreleased)
+
+CHANGES:
+
+* Added a new script iam/show-password-policy.py. ([@TGWolf][])
+
 ## 1.0.6 (November 22, 2018)
 
 CHANGES:
