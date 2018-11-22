@@ -74,7 +74,7 @@ def query_api(client, args):
                     limits = ''
                     for item in response['AccountAttributes']:
                         values = item['AttributeValues'][0]
-                        limits += '%-37s = %s\n' %  (item['AttributeName'], values['AttributeValue'])
+                        limits += '%-37s = %s\n' % (item['AttributeName'], values['AttributeValue'])
                     limits = limits.rstrip('\n')
                 else:
                     limits = unknown_string
