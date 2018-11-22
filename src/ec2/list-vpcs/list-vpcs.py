@@ -65,6 +65,20 @@ def get_tag_value(tags, key):
     return unknown_string
 
 
+def get_tags(tags):
+    """
+      Return the tags a string.
+    """
+
+    tag_str = ''
+
+    sorted_tags = sorted(tags, key=lambda k: k['Key'], reverse=False)
+    for tag in sorted_tags:
+        tag_str += '%s = %s\n' % (tag['Key'], tag['Value'])
+    tag_str = tag_str.rstrip('\n')
+
+    return tag_str
+
 def query_api(client, args):
     """
     Query the API
@@ -81,11 +95,13 @@ def query_api(client, args):
     else:
         if 'Vpcs' in response:
             for parts in response['Vpcs']:
+                tags = get_tags(parts['Tags']) if 'Tags' in parts else unknown_string
                 results.append({
                                 'Name': get_tag_value(parts['Tags'], 'Name') if 'Tags' in parts else unknown_string,
                                 'CidrBlock': parts['CidrBlock'] if 'CidrBlock' in parts else unknown_string,
                                 'VpcId': parts['VpcId'] if 'VpcId' in parts else unknown_string,
                                 'State': parts['State'] if 'State' in parts else unknown_string,
+                                'Tags': tags,
                                })
     return results
 
@@ -102,6 +118,7 @@ def display_results(results):
                          'CidrBlock',
                          'VpcId',
                          'State',
+                         'Tags',
                         ]
 
     for parts in results:
@@ -110,6 +127,7 @@ def display_results(results):
                        parts['CidrBlock'],
                        parts['VpcId'],
                        parts['State'],
+                       parts['Tags'],
                       ])
 
     table.sortby = 'Name'

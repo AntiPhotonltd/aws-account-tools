@@ -1,0 +1,4 @@
+botocore==1.10.40
+boto3==1.7.40
+prettytable==0.7.2
+requests==2.18.4

@@ -1,3 +1,11 @@
+## 1.0.6 (November 22, 2018)
+
+CHANGES:
+
+* Added a new script ec2/list-account-attributes.py. ([@TGWolf][])
+* Added a new script ec2/list-regions.py. ([@TGWolf][])
+* Added tags column to the list-vpcs script. ([@TGWolf][])
+
 ## 1.0.5 (November 15, 2018)
 
 CHANGES:
