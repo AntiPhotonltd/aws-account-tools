@@ -60,10 +60,10 @@ def get_value(client, name, encrypted=True):
     try:
         result = client.get_parameter(Name=name, WithDecryption=encrypted)
     except ClientError as e:
-        #print(e.response['Error']['Code'])
+        print(e.response['Error']['Code'])
         return None
     except Exception as e:
-        #print(e.response['Error']['Code'])
+        print(e.response['Error']['Code'])
         return None
 
     type = result['Parameter']['Type']
