@@ -16,6 +16,7 @@ A collection of simply tools for managing and auditing AWS.
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | [README](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)| [elasticbeanstalk][L_elasticbeanstalk] |
 | [list-account-attributes.py](src/ec2/list-account-attributes/list-account-attributes.py) | [README](src/ec2/list-account-attributes/README.md) | [ec2][L_ec2] |
 | [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | [README](src/acm/list-acm-certificates/README.md) | [acm][L_acm] |
+| [list-all-parameters.py](src/ssm/list-all-parameters/list-all-parameters.py) | [README](src/ssm/list-all-parameters/README.md) | [ssm][L_ssm] |
 | [list-dynamodb-tables.py](src/dynamodb/list-dynamodb-tables/list-dynamodb-tables.py) | [README](src/dynamodb/list-dynamodb-tables/README.md) | [dynamodb][L_dynamodb] |
 | [list-ebs-volumes.py](src/ec2/list-ebs-volumes/list-ebs-volumes.py) | [README](src/ec2/list-ebs-volumes/README.md) | [ec2][L_ec2] |
 | [list-ec2-instances.py](src/ec2/list-ec2-instances/list-ec2-instances.py) | [README](src/ec2/list-ec2-instances/README.md) | [ec2][L_ec2] |
@@ -49,3 +50,4 @@ A collection of simply tools for managing and auditing AWS.
 [L_lambda]: https://docs.aws.amazon.com/cli/latest/reference/lambda/index.html
 [L_rds]: https://docs.aws.amazon.com/cli/latest/reference/rds/index.html
 [L_s3]: https://docs.aws.amazon.com/cli/latest/reference/s3/index.html
+[L_ssm]: https://docs.aws.amazon.com/cli/latest/reference/ssm/index.html
