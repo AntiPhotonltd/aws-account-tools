@@ -3,7 +3,7 @@
 """
 Example Usage:
 
-    ./list-all-parameters.py
+    ./list-ssm-parameters.py
 """
 
 from __future__ import print_function
@@ -50,7 +50,7 @@ def make_parser():
     This function builds up the command line parser that is used by the script.
     """
 
-    parser = argparse.ArgumentParser(description='List All Parameters')
+    parser = argparse.ArgumentParser(description='List SSM Parameters')
     parser.add_argument('-r', '--region', help='The aws region')
 
     return parser

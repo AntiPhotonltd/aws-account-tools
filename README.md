@@ -14,6 +14,7 @@ A collection of simply tools for managing and auditing AWS.
 | --- | --- | --- |
 | [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | [README](src/rds/check-for-rds-upgrade/README.md) | [rds][L_rds] |
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | [README](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)| [elasticbeanstalk][L_elasticbeanstalk] |
+| [get-ssm-parameter.py](src/ssm/get-ssm-parameter/get-ssm-parameter.py) | [README](src/ssm/get-ssm-parameter/README.md) | [ssm][L_ssm] |
 | [list-account-attributes.py](src/ec2/list-account-attributes/list-account-attributes.py) | [README](src/ec2/list-account-attributes/README.md) | [ec2][L_ec2] |
 | [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | [README](src/acm/list-acm-certificates/README.md) | [acm][L_acm] |
 | [list-dynamodb-tables.py](src/dynamodb/list-dynamodb-tables/list-dynamodb-tables.py) | [README](src/dynamodb/list-dynamodb-tables/README.md) | [dynamodb][L_dynamodb] |
