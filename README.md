@@ -16,7 +16,6 @@ A collection of simply tools for managing and auditing AWS.
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | [README](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)| [elasticbeanstalk][L_elasticbeanstalk] |
 | [list-account-attributes.py](src/ec2/list-account-attributes/list-account-attributes.py) | [README](src/ec2/list-account-attributes/README.md) | [ec2][L_ec2] |
 | [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | [README](src/acm/list-acm-certificates/README.md) | [acm][L_acm] |
-| [list-all-parameters.py](src/ssm/list-all-parameters/list-all-parameters.py) | [README](src/ssm/list-all-parameters/README.md) | [ssm][L_ssm] |
 | [list-dynamodb-tables.py](src/dynamodb/list-dynamodb-tables/list-dynamodb-tables.py) | [README](src/dynamodb/list-dynamodb-tables/README.md) | [dynamodb][L_dynamodb] |
 | [list-ebs-volumes.py](src/ec2/list-ebs-volumes/list-ebs-volumes.py) | [README](src/ec2/list-ebs-volumes/README.md) | [ec2][L_ec2] |
 | [list-ec2-instances.py](src/ec2/list-ec2-instances/list-ec2-instances.py) | [README](src/ec2/list-ec2-instances/README.md) | [ec2][L_ec2] |
@@ -31,6 +30,7 @@ A collection of simply tools for managing and auditing AWS.
 | [list-rds-instances.py](src/rds/list-rds-instances/list-rds-instances.py) | [README](src/rds/list-rds-instances/README.md) | [rds][L_rds] |
 | [list-regions.py](src/ec2/list-regions/list-regions.py) | [README](src/ec2/list-regions/README.md) | [ec2][L_ec2] |
 | [list-s3-buckets.py](src/s3/list-s3-buckets/list-s3-buckets.py) | [README](src/s3/list-s3-buckets/README.md) | [s3][L_s3] |
+| [list-ssm-parameters.py](src/ssm/list-ssm-parameters/list-ssm-parameters.py) | [README](src/ssm/list-ssm-parameters/README.md) | [ssm][L_ssm] |
 | [list-vpc-peers.py](src/ec2/list-vpc-peers/list-vpc-peers.py) | [README](src/ec2/list-vpc-peers/README.md) | [ec2][L_ec2] |
 | [list-vpcs.py](src/ec2/list-vpcs/list-vpcs.py) | [README](src/ec2/list-vpcs/README.md) | [ec2][L_ec2] |
 | [show-password-policy.py](src/iam/show-password-policy/show-password-policy.py) | [README](src/iam/show-password-policy/README.md) | [iam][L_iam] |
