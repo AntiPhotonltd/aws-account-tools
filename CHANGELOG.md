@@ -6,6 +6,7 @@ CHANGES:
 * Added a new section for ssm scripts. ([@TGWolf][])
 * Added a new script ssm/list-ssm-parameters.py. ([@TGWolf][])
 * Added a new script ssm/get-ssm-parameter.py. ([@TGWolf][])
+* Added a new script ssm/backup-ssm-to-s3.py. ([@TGWolf][])
 
 ## 1.0.6 (November 22, 2018)
 

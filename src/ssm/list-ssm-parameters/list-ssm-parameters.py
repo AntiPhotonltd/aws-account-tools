@@ -40,7 +40,7 @@ def main(cmdline=None):
     else:
         client = boto3.client('ssm')
 
-    results = query_api(client, args)
+    results = query_api(client)
     display_results(results)
 
 
@@ -60,10 +60,14 @@ def get_value(client, name, encrypted=True):
     try:
         result = client.get_parameter(Name=name, WithDecryption=encrypted)
     except ClientError as e:
-        print(e.response['Error']['Code'])
+        print("Client Error: %s" % e.response['Error']['Code'])
+
+        if e.response['Error']['Code'] == 'InvalidKeyId':
+            return SSMValue(name, 'Pending Delete', None)
+
         return None
     except Exception as e:
-        print(e.response['Error']['Code'])
+        print("Unknown Error: %s" % e.response['Error']['Code'])
         return None
 
     type = result['Parameter']['Type']
@@ -74,7 +78,7 @@ def get_value(client, name, encrypted=True):
     return SSMValue(name, value, type)
 
 
-def query_api(client, arg, next_token=None):
+def query_api(client, next_token=None):
     """
     Query the API
     """
@@ -94,16 +98,20 @@ def query_api(client, arg, next_token=None):
             if 'HTTPStatusCode' in query_result['ResponseMetadata']:
                 if query_result['ResponseMetadata']['HTTPStatusCode'] == 200:
                     if 'NextToken' in query_result:
-                        results.extend(query_api(client, arg, next_token=query_result['NextToken']))
+                        results.extend(query_result['Parameters'])
+                        results.extend(query_api(client, next_token=query_result['NextToken']))
                     else:
                         results.extend(query_result['Parameters'])
 
     for parts in results:
-        value = None
+        value = 'Unknown'
         value_results = get_value(client, parts['Name']) if parts['Type'] == 'SecureString' else get_value(client, parts['Name'], False)
         if value_results is not None:
             value = value_results.value
         parts['Value'] = value
+
+        if 'Description' not in parts:
+            parts['Description'] = 'Unset'
 
     return results
 
@@ -123,17 +131,19 @@ def display_results(results):
                          'Last Modified',
                          'By',
                          'Version',
+                         'Description',
                         ]
 
     for parts in results:
         table.add_row([
                        parts['Name'],
-                       parts['Value'],
+                       parts['Value'] if 'Value' in parts else 'Unknown',
                        parts['Type'],
                        parts['KeyId'] if 'KeyId' in parts else '',
                        parts['LastModifiedDate'] if 'LastModifiedDate' in parts else 'Unknown',
                        parts['LastModifiedUser'] if 'LastModifiedUser' in parts else 'Unknown',
                        parts['Version'] if 'Version' in parts else '',
+                       parts['Description'],
                       ])
 
     table.sortby = 'Name'
