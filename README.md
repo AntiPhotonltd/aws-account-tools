@@ -13,6 +13,7 @@ A collection of simply tools for managing and auditing AWS.
 | Name | Script Documentation | AWS CLI Reference |
 | --- | --- | --- |
 | [backup-ssm-to-s3.py](src/ssm/backup-ssm-to-s3/backup-ssm-to-s3.py) | [README](src/ssm/backup-ssm-to-s3/README.md) | [ssm][L_ssm] |
+| [backup-all-ebs-volumes.py](src/ec2/backup-all-ebs-volumes/backup-all-ebs-volumes.py) | [README](src/ec2/backup-all-ebs-volumes/README.md) | [ec2][L_ec2] |
 | [check-for-rds-upgrade.py](src/rds/check-for-rds-upgrade/check-for-rds-upgrade.py) | [README](src/rds/check-for-rds-upgrade/README.md) | [rds][L_rds] |
 | [check-for-solution-stack-upgrade.py](src/elasticbeanstalk/check-for-solution-stack-upgrade/check-for-solution-stack-upgrade.py) | [README](src/elasticbeanstalk/check-for-solution-stack-upgrade/README.md)| [elasticbeanstalk][L_elasticbeanstalk] |
 | [get-ssm-parameter.py](src/ssm/get-ssm-parameter/get-ssm-parameter.py) | [README](src/ssm/get-ssm-parameter/README.md) | [ssm][L_ssm] |
