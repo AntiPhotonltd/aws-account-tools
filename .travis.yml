@@ -2,6 +2,36 @@ sudo: required
 
 matrix:
   include:
+  - language: bash
+    os: linux
+    dist: precise
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
+    install:
+      - "./travis/shellcheck/install.sh"
+    script:
+      - "./travis/shellcheck/build.sh"
+  - language: bash
+    os: linux
+    dist: trusty
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
+    install:
+      - "./travis/shellcheck/install.sh"
+    script:
+      - "./travis/shellcheck/build.sh"
+  - language: bash
+    os: osx
+    dist: precise
+    before_install:
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
+    install:
+      - "./travis/shellcheck/install.sh"
+    script:
+      - "./travis/shellcheck/build.sh"
   - language: python
     python: 2.7
     os: linux
