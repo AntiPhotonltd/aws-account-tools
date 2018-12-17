@@ -8,7 +8,7 @@ CHANGES:
 * Added a new script ssm/get-ssm-parameter.py. ([@TGWolf][])
 * Added a new script ssm/backup-ssm-to-s3.py. ([@TGWolf][])
 * Added a new script ec2/backup-all-ebs-volumes.sh. ([@TGWolf][])
-
+* Added a new script ec2/list-availability-zones.py. ([@TGWolf][])
 ## 1.0.6 (November 22, 2018)
 
 CHANGES:
