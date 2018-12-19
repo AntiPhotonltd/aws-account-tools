@@ -19,6 +19,7 @@ A collection of simply tools for managing and auditing AWS.
 | [get-ssm-parameter.py](src/ssm/get-ssm-parameter/get-ssm-parameter.py) | [README](src/ssm/get-ssm-parameter/README.md) | [ssm][L_ssm] |
 | [list-account-attributes.py](src/ec2/list-account-attributes/list-account-attributes.py) | [README](src/ec2/list-account-attributes/README.md) | [ec2][L_ec2] |
 | [list-acm-certificates.py](src/acm/list-acm-certificates/list-acm-certificates.py) | [README](src/acm/list-acm-certificates/README.md) | [acm][L_acm] |
+| [list-all-ec2-instance-types.py](src/ec2/list-all-ec2-instance-types/list-all-ec2-instance-types.py) | [README](src/list-all-ec2-instance-types/list-all-ec2-instance-types/README.md) | [acm][L_acm] |
 | [list-availability-zones.py](src/ec2/list-availability-zones/list-availability-zones.py) | [README](src/list-availability-zones/list-availability-zones/README.md) | [acm][L_acm] |
 | [list-dynamodb-tables.py](src/dynamodb/list-dynamodb-tables/list-dynamodb-tables.py) | [README](src/dynamodb/list-dynamodb-tables/README.md) | [dynamodb][L_dynamodb] |
 | [list-ebs-volumes.py](src/ec2/list-ebs-volumes/list-ebs-volumes.py) | [README](src/ec2/list-ebs-volumes/README.md) | [ec2][L_ec2] |
@@ -42,7 +43,8 @@ A collection of simply tools for managing and auditing AWS.
 
 ## ToDo List
 
-- [ ] Added Tags column to all scripts that have tag outputs.
+- [ ] Add Tags column to all scripts that have tag outputs.
+- [ ] Allow searching by name or tag or glab.
 
 [L_acm]: https://docs.aws.amazon.com/cli/latest/reference/acm/index.html
 [L_dynamodb]: https://docs.aws.amazon.com/cli/latest/reference/dynamodb/index.html
