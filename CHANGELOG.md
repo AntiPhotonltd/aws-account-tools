@@ -1,4 +1,4 @@
-## 1.0.7 (Unreleased)
+## 1.0.7 (December 21, 2018)
 
 CHANGES:
 
