@@ -10,6 +10,7 @@ CHANGES:
 * Added a new script ec2/backup-all-ebs-volumes.sh. ([@TGWolf][])
 * Added a new script ec2/list-availability-zones.py. ([@TGWolf][])
 * Added a new script ec2/list-all-ec2-instance-types.py. ([@TGWolf][])
+* Added a new script list-aws-service-availability-by-region.  ([@TGWolf][])
 
 ## 1.0.6 (November 22, 2018)
 
