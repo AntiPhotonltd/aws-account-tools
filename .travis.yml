@@ -37,22 +37,28 @@ matrix:
     os: linux
     before_install:
       - mkdir travis
+      - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
+      - "./travis/bandit/install.sh"
       - "./travis/pycodetyle/install.sh"
     script:
+      - "./travis/bandit/build.sh"
       - "./travis/pycodetyle/build.sh"
   - language: python
     python: 3.4
     os: linux
     before_install:
       - mkdir travis
+      - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
+      - "./travis/bandit/install.sh"
       - "./travis/pycodetyle/install.sh"
     script:
+      - "./travis/bandit/build.sh"
       - "./travis/pycodetyle/build.sh"
   - language: python
     python: 3.5
