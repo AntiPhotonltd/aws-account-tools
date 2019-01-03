@@ -26,11 +26,11 @@ matrix:
       - ./travis/pur/install.sh
       - ./travis/pycodetyle/install.sh
     script:
-      - figlet -c -w 125 -f big Bandit
+      - figlet -c -w 125 -f big Bandit Tests
       - ./travis/bandit/scan.sh
-      - figlet -c -w 125 -f big Pur
+      - figlet -c -w 125 -f big Pur Tests
       - ./travis/pur/scan.sh
-      - figlet -c -w 125 -f big Pycodestyle
+      - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.4
@@ -47,11 +47,11 @@ matrix:
       - ./travis/pur/install.sh
       - ./travis/pycodetyle/install.sh
     script:
-      - figlet -c -w 125 -f big Bandit
+      - figlet -c -w 125 -f big Bandit Tests
       - ./travis/bandit/scan.sh
-      - figlet -c -w 125 -f big Pur
+      - figlet -c -w 125 -f big Pur Tests
       - ./travis/pur/scan.sh
-      - figlet -c -w 125 -f big Pycodestyle
+      - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.5
@@ -68,11 +68,11 @@ matrix:
       - ./travis/pur/install.sh
       - ./travis/pycodetyle/install.sh
     script:
-      - figlet -c -w 125 -f big Bandit
+      - figlet -c -w 125 -f big Bandit Tests
       - ./travis/bandit/scan.sh
-      - figlet -c -w 125 -f big Pur
+      - figlet -c -w 125 -f big Pur Tests
       - ./travis/pur/scan.sh
-      - figlet -c -w 125 -f big Pycodestyle
+      - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.6
@@ -89,11 +89,11 @@ matrix:
       - ./travis/pur/install.sh
       - ./travis/pycodetyle/install.sh
     script:
-      - figlet -c -w 125 -f git Bandit
+      - figlet -c -w 125 -f big Bandit Tests
       - ./travis/bandit/scan.sh
-      - figlet -c -w 125 -f big Pur
+      - figlet -c -w 125 -f big Pur Tests
       - ./travis/pur/scan.sh
-      - figlet -c -w 125 -f big Pycodestyle
+      - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: ruby
     rvm: 2.2
