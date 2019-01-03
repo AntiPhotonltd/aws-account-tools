@@ -4,48 +4,30 @@ matrix:
   include:
   - language: bash
     os: linux
-    dist: precise
     before_install:
       - mkdir travis
       - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
     install:
       - "./travis/shellcheck/install.sh"
     script:
-      - "./travis/shellcheck/build.sh"
-  - language: bash
-    os: linux
-    dist: trusty
-    before_install:
-      - mkdir travis
-      - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
-    install:
-      - "./travis/shellcheck/install.sh"
-    script:
-      - "./travis/shellcheck/build.sh"
-  - language: bash
-    os: osx
-    dist: precise
-    before_install:
-      - mkdir travis
-      - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
-    install:
-      - "./travis/shellcheck/install.sh"
-    script:
-      - "./travis/shellcheck/build.sh"
+      - "./travis/shellcheck/scan.sh"
   - language: python
     python: 2.7
     os: linux
     before_install:
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
+      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
       - "./travis/bandit/install.sh"
+      - "./travis/pur/install.sh"
       - "./travis/pycodetyle/install.sh"
     script:
       - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/build.sh"
+      - "./travis/pur/scan.sh"
+      - "./travis/pycodetyle/scan.sh"
   - language: python
     python: 3.4
     os: linux
@@ -59,7 +41,7 @@ matrix:
       - "./travis/pycodetyle/install.sh"
     script:
       - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/build.sh"
+      - "./travis/pycodetyle/scan.sh"
   - language: python
     python: 3.5
     os: linux
@@ -73,7 +55,7 @@ matrix:
       - "./travis/pycodetyle/install.sh"
     script:
       - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/build.sh"
+      - "./travis/pycodetyle/scan.sh"
   - language: python
     python: 3.6
     os: linux
@@ -87,7 +69,7 @@ matrix:
       - "./travis/pycodetyle/install.sh"
     script:
       - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/build.sh"
+      - "./travis/pycodetyle/scan.sh"
   - language: ruby
     rvm: 2.2
     before_install:
@@ -96,7 +78,7 @@ matrix:
     install:
       - "./travis/awesomebot/install.sh"
     script: 
-      - "./travis/awesomebot/build.sh"
+      - "./travis/awesomebot/scan.sh"
 notifications:
   email: false
   slack:
