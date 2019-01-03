@@ -15,7 +15,7 @@ matrix:
     python: 2.7
     os: linux
     before_install:
-      - sudo apt-get install figlet toilet
+      - sudo apt-get install figlet
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
       - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
@@ -26,54 +26,75 @@ matrix:
       - ./travis/pur/install.sh
       - ./travis/pycodetyle/install.sh
     script:
-      - toilet -F border -F metal Bandit
+      - figlet -c -w 125 -f epic Bandit
       - ./travis/bandit/scan.sh
-      - toilet -F border -F metal Pur
+      - figlet -c -w 125 -f epic Pur
       - ./travis/pur/scan.sh
-      - toilet -F border -F metal Pycodestyle
+      - figlet -c -w 125 -f epic Pycodestyle
       - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.4
     os: linux
     before_install:
+      - sudo apt-get install figlet
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
+      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
-      - "./travis/bandit/install.sh"
-      - "./travis/pycodetyle/install.sh"
+      - ./travis/bandit/install.sh
+      - ./travis/pur/install.sh
+      - ./travis/pycodetyle/install.sh
     script:
-      - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/scan.sh"
+      - figlet -c -w 125 -f epic Bandit
+      - ./travis/bandit/scan.sh
+      - figlet -c -w 125 -f epic Pur
+      - ./travis/pur/scan.sh
+      - figlet -c -w 125 -f epic Pycodestyle
+      - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.5
     os: linux
     before_install:
+      - sudo apt-get install figlet
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
+      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
-      - "./travis/bandit/install.sh"
-      - "./travis/pycodetyle/install.sh"
+      - ./travis/bandit/install.sh
+      - ./travis/pur/install.sh
+      - ./travis/pycodetyle/install.sh
     script:
-      - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/scan.sh"
+      - figlet -c -w 125 -f epic Bandit
+      - ./travis/bandit/scan.sh
+      - figlet -c -w 125 -f epic Pur
+      - ./travis/pur/scan.sh
+      - figlet -c -w 125 -f epic Pycodestyle
+      - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.6
     os: linux
     before_install:
+      - sudo apt-get install figlet
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
+      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
-      - "./travis/bandit/install.sh"
-      - "./travis/pycodetyle/install.sh"
+      - ./travis/bandit/install.sh
+      - ./travis/pur/install.sh
+      - ./travis/pycodetyle/install.sh
     script:
-      - "./travis/bandit/scan.sh"
-      - "./travis/pycodetyle/scan.sh"
+      - figlet -c -w 125 -f epic Bandit
+      - ./travis/bandit/scan.sh
+      - figlet -c -w 125 -f epic Pur
+      - ./travis/pur/scan.sh
+      - figlet -c -w 125 -f epic Pycodestyle
+      - ./travis/pycodetyle/scan.sh
   - language: ruby
     rvm: 2.2
     before_install:
