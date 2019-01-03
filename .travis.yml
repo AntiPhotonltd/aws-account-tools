@@ -15,19 +15,23 @@ matrix:
     python: 2.7
     os: linux
     before_install:
+      - sudo apt-get install figlet
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
       - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
       - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
       - pip install --upgrade setuptools
     install:
-      - "./travis/bandit/install.sh"
-      - "./travis/pur/install.sh"
-      - "./travis/pycodetyle/install.sh"
+      - ./travis/bandit/install.sh
+      - ./travis/pur/install.sh
+      - ./travis/pycodetyle/install.sh
     script:
-      - "./travis/bandit/scan.sh"
-      - "./travis/pur/scan.sh"
-      - "./travis/pycodetyle/scan.sh"
+      - figlet Bandit
+      - ./travis/bandit/scan.sh
+      - figlet Pur
+      - ./travis/pur/scan.sh
+      - figlet Pycodestyle
+      - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.4
     os: linux
