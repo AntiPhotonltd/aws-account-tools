@@ -15,7 +15,7 @@ matrix:
     python: 2.7
     os: linux
     before_install:
-      - sudo apt-get install figlet
+      - sudo apt-get install figlet toilet
       - mkdir travis
       - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
       - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
@@ -26,11 +26,11 @@ matrix:
       - ./travis/pur/install.sh
       - ./travis/pycodetyle/install.sh
     script:
-      - figlet Bandit
+      - toilet -F border -F metal Bandit
       - ./travis/bandit/scan.sh
-      - figlet Pur
+      - toilet -F border -F metal Pur
       - ./travis/pur/scan.sh
-      - figlet Pycodestyle
+      - toilet -F border -F metal Pycodestyle
       - ./travis/pycodetyle/scan.sh
   - language: python
     python: 3.4
