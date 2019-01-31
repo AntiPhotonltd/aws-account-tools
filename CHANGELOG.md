@@ -1,3 +1,9 @@
+## 1.0.8 (Unreleased)
+
+CHANGES:
+
+* Added a new script elasticbeanstalk/change-asg-health-check-type.py. ([@TGWolf][])
+
 ## 1.0.7 (December 21, 2018)
 
 CHANGES:
