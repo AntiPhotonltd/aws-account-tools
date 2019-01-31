@@ -39,7 +39,7 @@ def main(cmdline=None):
         client = boto3.client('elasticbeanstalk')
 
     asg_name = get_asg_name(client, args)
-    if asg_name == None:
+    if asg_name is None:
         print('Failed to find the asg_name - Aborting')
         exit(1)
 
@@ -82,8 +82,8 @@ def get_asg_name(client, args):
         exit(1)
     else:
         if 'EnvironmentResources' in response and len(response['EnvironmentResources']) > 0:
-            if iterate_dictionary(response,"EnvironmentResources/AutoScalingGroups/Name"):
-                asg_name = iterate_dictionary(response,"EnvironmentResources/AutoScalingGroups/Name")[0]
+            if iterate_dictionary(response, "EnvironmentResources/AutoScalingGroups/Name"):
+                asg_name = iterate_dictionary(response, "EnvironmentResources/AutoScalingGroups/Name")[0]
 
     return asg_name
 
@@ -102,8 +102,8 @@ def change_health_check_type(client, asg_name, grace_period):
         exit(1)
     else:
         print(response)
-        if iterate_dictionary(response,"ResponseMetadata/HTTPStatusCode"):
-            status_code = iterate_dictionary(response,"ResponseMetadata/HTTPStatusCode")[0]
+        if iterate_dictionary(response, "ResponseMetadata/HTTPStatusCode"):
+            status_code = iterate_dictionary(response, "ResponseMetadata/HTTPStatusCode")[0]
             if status_code == 200:
                 print('Update sucessful')
             else:

@@ -26,3 +26,15 @@ optional arguments:
                         The aws region
 
 ```
+
+## Bash
+
+```shell
+#!/usr/bin/env bash
+
+ASG_NAME=$(aws elasticbeanstalk describe-environment-resources --region "${REGION}" --environment-name "${BEANSTALK_ENVIRONMENT_NAME}" --query 'EnvironmentResources.AutoScalingGroups[*].Name' --output text)
+
+if [[ ! -z $asg_name ]]; then
+    aws --region "${REGION}" autoscaling update-auto-scaling-group --auto-scaling-group-name "${ASG_NAME}" --health-check-type ELB --health-check-grace-period "${GRACE_PERIOD}"
+fi
+```
