@@ -25,7 +25,7 @@ fi
 VOLUME_AZ=$(echo "${ID_AZ}" | cut -f1)
 VOLUME_ID=$(echo "${ID_AZ}" | cut -f2)
 
-if [[ "${INSTANCE_AZ}" == ${VOLUME_AZ} ]]; then
+if [[ "${INSTANCE_AZ}" == "${VOLUME_AZ}" ]]; then
     echo "Instance and volume are n the same AZ - aborting"
     exit 1
 fi
@@ -40,8 +40,8 @@ SNAPSHOT_ID=$(aws ec2 create-snapshot --volume-id "${VOLUME_ID}" --description "
 #
 while [ "${exit_status}" != "0" ]
 do
-    SNAPSHOT_STATE="$(aws ec2 describe-snapshots --filters Name=snapshot-id,Values=${SNAPSHOT_ID} --query 'Snapshots[0].State')"
-    SNAPSHOT_PROGRESS="$(aws ec2 describe-snapshots --filters Name=snapshot-id,Values=${SNAPSHOT_ID} --query 'Snapshots[0].Progress')"
+    SNAPSHOT_STATE="$(aws ec2 describe-snapshots --filters Name=snapshot-id,Values="${SNAPSHOT_ID}" --query 'Snapshots[0].State')"
+    SNAPSHOT_PROGRESS="$(aws ec2 describe-snapshots --filters Name=snapshot-id,Values="${SNAPSHOT_ID}" --query 'Snapshots[0].Progress')"
     echo "### Snapshot id ${SNAPSHOT_ID} creation: state is ${SNAPSHOT_STATE}, ${SNAPSHOT_PROGRESS}%..."
 
     aws ec2 wait snapshot-completed --snapshot-ids "${SNAPSHOT_ID}"

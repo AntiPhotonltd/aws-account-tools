@@ -1,7 +1,0 @@
-
-
-
-
-SNAPSHOT_ID=$(aws ec2 create-snapshot --volume-id 'vol-0378ec15e7ca6344b' --description "testing 1 2 3" --query 'SnapshotId' --output text)
-
-    aws ec2 wait snapshot-completed --snapshot-ids "${SNAPSHOT_ID}"
