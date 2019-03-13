@@ -3,8 +3,7 @@ sudo: required
 matrix:
   include:
   - language: bash
-    env:
-      - PURPOSE="Shellcheck"
+    name: "Shellcheck"
     os: linux
     before_install:
       - mkdir travis
@@ -14,8 +13,7 @@ matrix:
     script:
       - "./travis/shellcheck/scan.sh"
   - language: python
-    env:
-      - PURPOSE="Bandit/Pur/Pycodestyle"
+    name: "Python 2.7 Bandit, Pur & Pycodestyle tests"
     python: 2.7
     os: linux
     before_install:
@@ -37,8 +35,7 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    env:
-      - PURPOSE="Bandit/Pur/Pycodestyle"
+    name: "Python 3.4 Bandit, Pur & Pycodestyle tests"
     python: 3.4
     os: linux
     before_install:
@@ -60,8 +57,7 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    env:
-      - PURPOSE="Bandit/Pur/Pycodestyle"
+    name: "Python 3.5 Bandit, Pur & Pycodestyle tests"
     python: 3.5
     os: linux
     before_install:
@@ -83,8 +79,7 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    env:
-      - PURPOSE="Bandit/Pur/Pycodestyle"
+    name: "Python 3.6 Bandit, Pur & Pycodestyle tests"
     python: 3.6
     os: linux
     before_install:
@@ -106,9 +101,8 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: ruby
-    env:
-      - PURPOSE="Link Checking"
-    rvm: 2.2
+    name: "Link Checking"
+    rvm: 2.6.1
     before_install:
       - mkdir travis
       - git clone https://github.com/TravisToolbox/awesomebot-travis.git travis/awesomebot
