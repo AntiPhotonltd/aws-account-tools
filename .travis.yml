@@ -3,6 +3,8 @@ sudo: required
 matrix:
   include:
   - language: bash
+    env:
+      - PURPOSE="Shellcheck"
     os: linux
     before_install:
       - mkdir travis
@@ -12,6 +14,8 @@ matrix:
     script:
       - "./travis/shellcheck/scan.sh"
   - language: python
+    env:
+      - PURPOSE="Bandit/Pur/Pycodestyle"
     python: 2.7
     os: linux
     before_install:
@@ -33,6 +37,8 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
+    env:
+      - PURPOSE="Bandit/Pur/Pycodestyle"
     python: 3.4
     os: linux
     before_install:
@@ -54,6 +60,8 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
+    env:
+      - PURPOSE="Bandit/Pur/Pycodestyle"
     python: 3.5
     os: linux
     before_install:
@@ -75,6 +83,8 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
+    env:
+      - PURPOSE="Bandit/Pur/Pycodestyle"
     python: 3.6
     os: linux
     before_install:
@@ -96,6 +106,8 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: ruby
+    env:
+      - PURPOSE="Link Checking"
     rvm: 2.2
     before_install:
       - mkdir travis
