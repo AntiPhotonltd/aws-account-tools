@@ -1,7 +1,7 @@
 matrix:
   include:
   - language: bash
-    name: "Shellcheck"
+    name: "Shellcheck (Bash)"
     os: linux
     before_install:
       - mkdir travis
@@ -11,7 +11,7 @@ matrix:
     script:
       - ./travis/shellcheck/scan.sh
   - language: python
-    name: "Python 2.7: Bandit, Pur & Pycodestyle tests"
+    name: "Bandit, Pur & Pycodestyle (Python 2.7)"
     python: 2.7
     os: linux
     before_install:
@@ -33,7 +33,7 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Python 3.4: Bandit, Pur & Pycodestyle tests"
+    name: "Bandit, Pur & Pycodestyle (Python 3.4)"
     python: 3.4
     os: linux
     before_install:
@@ -55,7 +55,7 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Python 3.5: Bandit, Pur & Pycodestyle tests"
+    name: "Bandit, Pur & Pycodestyle (Python 3.5)"
     python: 3.5
     os: linux
     before_install:
@@ -77,7 +77,7 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Python 3.6: Bandit, Pur & Pycodestyle tests"
+    name: "Bandit, Pur & Pycodestyle (Python 3.6)"
     python: 3.6
     os: linux
     before_install:
