@@ -33,28 +33,6 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Bandit, Pur & Pycodestyle (Python 3.4)"
-    python: 3.4
-    os: linux
-    before_install:
-      - sudo apt-get install figlet
-      - mkdir travis
-      - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
-      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
-      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
-      - pip install --upgrade setuptools
-    install:
-      - ./travis/bandit/install.sh
-      - ./travis/pur/install.sh
-      - ./travis/pycodetyle/install.sh
-    script:
-      - figlet -c -w 125 -f big Bandit Tests
-      - ./travis/bandit/scan.sh
-      - figlet -c -w 125 -f big Pur Tests
-      - ./travis/pur/scan.sh
-      - figlet -c -w 125 -f big Pycodestyle Tests
-      - ./travis/pycodetyle/scan.sh
-  - language: python
     name: "Bandit, Pur & Pycodestyle (Python 3.5)"
     python: 3.5
     os: linux
@@ -79,6 +57,28 @@ matrix:
   - language: python
     name: "Bandit, Pur & Pycodestyle (Python 3.6)"
     python: 3.6
+    os: linux
+    before_install:
+      - sudo apt-get install figlet
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
+      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
+      - pip install --upgrade setuptools
+    install:
+      - ./travis/bandit/install.sh
+      - ./travis/pur/install.sh
+      - ./travis/pycodetyle/install.sh
+    script:
+      - figlet -c -w 125 -f big Bandit Tests
+      - ./travis/bandit/scan.sh
+      - figlet -c -w 125 -f big Pur Tests
+      - ./travis/pur/scan.sh
+      - figlet -c -w 125 -f big Pycodestyle Tests
+      - ./travis/pycodetyle/scan.sh
+  - language: python
+    name: "Bandit, Pur & Pycodestyle (Python 3.7)"
+    python: 3.7
     os: linux
     before_install:
       - sudo apt-get install figlet
