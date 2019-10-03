@@ -47,6 +47,8 @@ A collection of simply tools for managing and auditing AWS.
 
 - [ ] Add Tags column to all scripts that have tag outputs.
 - [ ] Allow searching by name or tag or glab.
+- [ ] Add a path to the backup ssm so it doesnt go into the bucket root.
+- [ ] Ensure everything works with switch role!
 
 [L_acm]: https://docs.aws.amazon.com/cli/latest/reference/acm/index.html
 [L_dynamodb]: https://docs.aws.amazon.com/cli/latest/reference/dynamodb/index.html
