@@ -207,7 +207,7 @@ def upload_parameters(parameters, args):
     else:
         ext = 'json'
 
-    filename = "%s-%s.%s" % (args.prefix, time.strftime('%Y%m%H%M%S', time.gmtime()), ext)
+    filename = "%s-%s.%s" % (args.prefix, time.strftime('%Y%m%d%H%M%S', time.gmtime()), ext)
 
     show_message("Backing up to s3://%s/%s" % (args.bucket, filename))
 
