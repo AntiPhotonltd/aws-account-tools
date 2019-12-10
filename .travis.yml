@@ -98,9 +98,31 @@ matrix:
       - ./travis/pur/scan.sh
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
+  - language: python
+    name: "Bandit, Pur & Pycodestyle (Python 3.8)"
+    python: 3.8
+    os: linux
+    before_install:
+      - sudo apt-get install figlet
+      - mkdir travis
+      - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
+      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
+      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
+      - pip install --upgrade setuptools
+    install:
+      - ./travis/bandit/install.sh
+      - ./travis/pur/install.sh
+      - ./travis/pycodetyle/install.sh
+    script:
+      - figlet -c -w 125 -f big Bandit Tests
+      - ./travis/bandit/scan.sh
+      - figlet -c -w 125 -f big Pur Tests
+      - ./travis/pur/scan.sh
+      - figlet -c -w 125 -f big Pycodestyle Tests
+      - ./travis/pycodetyle/scan.sh
   - language: ruby
-    name: "Link Checking (rvm 2.6.1)"
-    rvm: 2.6.1
+    name: "Link Checking (rvm 2.6)"
+    rvm: 2.6
     before_install:
       - mkdir travis
       - git clone https://github.com/TravisToolbox/awesomebot-travis.git travis/awesomebot
