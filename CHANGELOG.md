@@ -1,10 +1,10 @@
-## 1.0.8 (Unreleased)
+## 1.0.8 (December 10, 2019)
 
 CHANGES:
 
 * Added a new script elasticbeanstalk/change-asg-health-check-type.py. ([@TGWolf][])
 * Updated backup-ssm-to-s3.py as the 'day' was missing from the filename. ([@TGWolf][])
-* Removed python 3.4 from .travis and added 3.7. ([@TGWolf][])
+* Removed python 3.4 from .travis.cfg and added 3.7 and 3.8 ([@TGWolf][])
 
 ## 1.0.7 (December 21, 2018)
 

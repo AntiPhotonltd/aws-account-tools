@@ -1,8 +1,8 @@
 matrix:
   include:
   - language: bash
-    name: "Shellcheck (Bash)"
-    os: linux
+    name: "Shellcheck (Bash) [Ubuntu Bionic 18.04]"
+    dist: bionic
     before_install:
       - mkdir travis
       - git clone https://github.com/TravisToolbox/shellcheck-travis.git travis/shellcheck
