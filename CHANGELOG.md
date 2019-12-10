@@ -1,14 +1,21 @@
 ## 1.0.8 (December 10, 2019)
 
-CHANGES:
+NEW FEATURES:
 
 * Added a new script elasticbeanstalk/change-asg-health-check-type.py. ([@TGWolf][])
+* Added support for python 3.7 and 3.8 to the .travis.cfg file. ([@TGWolf][])
+
+ENHANCEMENTS:
+
 * Updated backup-ssm-to-s3.py as the 'day' was missing from the filename. ([@TGWolf][])
-* Removed python 2.7 and 3.4 from .travis.cfg and added 3.7 and 3.8 ([@TGWolf][])
+
+REMOVED:
+
+* Removed support for python 2.7 and 3.4 from .travis.cfg file. ([@TGWolf][])
 
 ## 1.0.7 (December 21, 2018)
 
-CHANGES:
+NEW FEATURES:
 
 * Added a new script iam/show-password-policy.py. ([@TGWolf][])
 * Added a new section for ssm scripts. ([@TGWolf][])
@@ -22,7 +29,7 @@ CHANGES:
 
 ## 1.0.6 (November 22, 2018)
 
-CHANGES:
+NEW FEATURES:
 
 * Added a new script ec2/list-account-attributes.py. ([@TGWolf][])
 * Added a new script ec2/list-regions.py. ([@TGWolf][])
@@ -30,13 +37,13 @@ CHANGES:
 
 ## 1.0.5 (November 15, 2018)
 
-CHANGES:
+ENHANCEMENTS:
 
 * Only clone Travis Toolkit modules when required in travis build. ([@TGWolf][])
 
 ## 1.0.4 (November 15, 2018)
 
-CHANGES:
+NEW FEATURES:
 
 * Added a new section for acm scripts. ([@TGWolf][])
 * Added a new section for dynamodb scripts. ([@TGWolf][])
@@ -56,12 +63,15 @@ CHANGES:
 * Added a new script route53/list-route53-hosted-zones.py ([@TGWolf][])
 * Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
 * General tidy up of all scripts and internal docs / readme files. ([@TGWolf][])
+
+ENHANCEMENTS:
+
 * Updated the awesomebot_travis submodule. ([@TGWolf][])
 * Updated the python_travis submodule. ([@TGWolf][])
 
 ## 1.0.3 (November 7, 2018)
 
-CHANGES:
+NEW FEATURES:
 
 * Added a new section for IAM scripts. ([@TGWolf][])
 * Added a new section for EC2 scripts. ([@TGWolf][])
@@ -74,20 +84,26 @@ CHANGES:
 
 ## 1.0.2 (November 6, 2018)
 
-CHANGES:
+NEW FEATURES:
 
 * Addition of new script to list all RDS instances and details about them. ([@TGWolf][])
+* README.md added to each script to give more detailed overview. ([@TGWolf][])
+
+ENHANCEMENTS:
+
 * Tidy up of variable and function names to give them more meaning. ([@TGWolf][])
 * Added 'exit code' mode - sets the exit code to be the number of real upgrades available. ([@TGWolf][])
 * Added 'silent' mode so no output it given (designed to work with exit code above). ([@TGWolf][])
 * Remove type=str from command line parameters as this is the default for python. ([@TGWolf][])
 * Upgrade Available is now displayed as True/False instead of 1/0. ([@TGWolf][])
-* README.md added to each script to give more detailed overview. ([@TGWolf][])
+
+BUG FIXES:
+
 * Bug found in check-for-solution-stack-upgrade.py due to unsafe assumption, change in the lookup logic. ([@TGWolf][])
 
 ## 1.0.1 (November 6, 2018)
 
-CHANGES:
+ENHANCEMENTS:
 
 * Improve the version checking so that a version is checked to ensure it is an actual upgrade and not just a different version. ([@TGWolf][])
 
@@ -96,3 +112,5 @@ CHANGES:
 * Initial Release ([@TGWolf][])
 
 [@TGWolf]: https://github.com/TGWolf
+
+[comment]: # (CHANGELOG Section Headers can be: ENHANCEMENTS, NEW FEATURES, BUG FIXES, NOTES, SECURITY, REMOVED, DEPRECATED)
