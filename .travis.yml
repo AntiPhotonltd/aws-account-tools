@@ -1,7 +1,7 @@
 matrix:
   include:
   - language: bash
-    name: "Shellcheck (Bash) [Ubuntu Bionic 18.04]"
+    name: "Shellcheck [Bash running on Ubuntu Bionic 18.04]"
     dist: bionic
     before_install:
       - mkdir travis
@@ -11,31 +11,9 @@ matrix:
     script:
       - ./travis/shellcheck/scan.sh
   - language: python
-    name: "Bandit, Pur & Pycodestyle (Python 2.7)"
-    python: 2.7
-    os: linux
-    before_install:
-      - sudo apt-get install figlet
-      - mkdir travis
-      - git clone https://github.com/TravisToolbox/bandit-travis.git travis/bandit
-      - git clone https://github.com/TravisToolbox/pur-travis.git travis/pur
-      - git clone https://github.com/TravisToolbox/pycodestyle-travis.git travis/pycodetyle
-      - pip install --upgrade setuptools
-    install:
-      - ./travis/bandit/install.sh
-      - ./travis/pur/install.sh
-      - ./travis/pycodetyle/install.sh
-    script:
-      - figlet -c -w 125 -f big Bandit Tests
-      - ./travis/bandit/scan.sh
-      - figlet -c -w 125 -f big Pur Tests
-      - ./travis/pur/scan.sh
-      - figlet -c -w 125 -f big Pycodestyle Tests
-      - ./travis/pycodetyle/scan.sh
-  - language: python
-    name: "Bandit, Pur & Pycodestyle (Python 3.5)"
+    name: "Bandit, Pur & Pycodestyle [Python 3.5 running on Ubuntu Bionic 18.04]"
     python: 3.5
-    os: linux
+    dist: bionic
     before_install:
       - sudo apt-get install figlet
       - mkdir travis
@@ -55,9 +33,9 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Bandit, Pur & Pycodestyle (Python 3.6)"
+    name: "Bandit, Pur & Pycodestyle [Python 3.6 running on Ubuntu Bionic 18.04]"
     python: 3.6
-    os: linux
+    dist: bionic
     before_install:
       - sudo apt-get install figlet
       - mkdir travis
@@ -77,9 +55,9 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Bandit, Pur & Pycodestyle (Python 3.7)"
+    name: "Bandit, Pur & Pycodestyle [Python 3.7 running on Ubuntu Bionic 18.04]"
     python: 3.7
-    os: linux
+    dist: bionic
     before_install:
       - sudo apt-get install figlet
       - mkdir travis
@@ -99,9 +77,9 @@ matrix:
       - figlet -c -w 125 -f big Pycodestyle Tests
       - ./travis/pycodetyle/scan.sh
   - language: python
-    name: "Bandit, Pur & Pycodestyle (Python 3.8)"
+    name: "Bandit, Pur & Pycodestyle [Python 3.8 running on Ubuntu Bionic 18.04]"
     python: 3.8
-    os: linux
+    dist: bionic
     before_install:
       - sudo apt-get install figlet
       - mkdir travis
