@@ -6,26 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+### [Unreleased]
 
-## [1.0.8] 2019-12-19
+### [Version 1.0.8] 2019-12-19
 
-NEW FEATURES:
+#### NEW FEATURES:
 
 * Added a new script elasticbeanstalk/change-asg-health-check-type.py. ([@TGWolf][])
 * Added support for python 3.7 and 3.8 to the .travis.cfg file. ([@TGWolf][])
 
-ENHANCEMENTS:
+#### ENHANCEMENTS:
 
 * Updated backup-ssm-to-s3.py as the 'day' was missing from the filename. ([@TGWolf][])
 
-REMOVED:
+#### REMOVED:
 
 * Removed support for python 2.7 and 3.4 from .travis.cfg file. ([@TGWolf][])
 
-## 1.0.7 (December 21, 2018)
+### [Version 1.0.7] 2018-09-21
 
-NEW FEATURES:
+#### NEW FEATURES:
 
 * Added a new script iam/show-password-policy.py. ([@TGWolf][])
 * Added a new section for ssm scripts. ([@TGWolf][])
@@ -125,7 +125,7 @@ ENHANCEMENTS:
 
 [comment]: # (CHANGELOG Section Headers can be: ENHANCEMENTS, NEW FEATURES, BUG FIXES, NOTES, SECURITY, REMOVED, DEPRECATED)
 
-[unreleased]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.8...HEAD
 [1.0.8]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.7...v1.0.8
 [1.0.7]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.6...v1.0.7
 [1.0.6]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.5...v1.0.6
