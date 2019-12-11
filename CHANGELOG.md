@@ -8,7 +8,11 @@ For further info see our [changelogs](https://github.com/AntiPhotonltd/changelog
 
 ## [Unreleased]
 
-## [v1.0.9] - December 10 2019
+Documentation:
+
+* Fix the date for the 1.0.9 release. ([@TGWolf][])
+
+## [v1.0.9] - December 11 2019
 
 Documentation:
 
