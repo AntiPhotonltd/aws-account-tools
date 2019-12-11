@@ -1,29 +1,31 @@
-# Changelog
+# AWS Tools Changelog
 
 All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+For further info see our [changelosg](https://github.com/AntiPhotonltd/changelogs) guide.
+
 ## [Unreleased]
 
-## [v1.0.8] (December 10 2019)
+## [v1.0.8] - December 10 2019
 
-#### NEW FEATURES:
+New Features:
 
 * Added a new script elasticbeanstalk/change-asg-health-check-type.py. ([@TGWolf][])
 * Added support for python 3.7 and 3.8 to the .travis.cfg file. ([@TGWolf][])
 
-#### ENHANCEMENTS:
+Improvements:
 
 * Updated backup-ssm-to-s3.py as the 'day' was missing from the filename. ([@TGWolf][])
 
-#### REMOVED:
+Removed:
 
 * Removed support for python 2.7 and 3.4 from .travis.cfg file. ([@TGWolf][])
 
-## [v1.0.7] (September 21 2019)
+## [v1.0.7] - September 21 2019
 
-### NEW FEATURES:
+New Features:
 
 * Added a new script iam/show-password-policy.py. ([@TGWolf][])
 * Added a new section for ssm scripts. ([@TGWolf][])
@@ -35,23 +37,26 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 * Added a new script ec2/list-all-ec2-instance-types.py. ([@TGWolf][])
 * Added a new script list-aws-service-availability-by-region.  ([@TGWolf][])
 
-## 1.0.6 (November 22, 2018)
+## [v1.0.6] - November 22 2018
 
-NEW FEATURES:
+New Features:
 
 * Added a new script ec2/list-account-attributes.py. ([@TGWolf][])
 * Added a new script ec2/list-regions.py. ([@TGWolf][])
+
+Improvements:
+
 * Added tags column to the list-vpcs script. ([@TGWolf][])
 
-## 1.0.5 (November 15, 2018)
+## [v1.0.5] - November 15 2018
 
-ENHANCEMENTS:
+Chores:
 
 * Only clone Travis Toolkit modules when required in travis build. ([@TGWolf][])
 
-## 1.0.4 (November 15, 2018)
+## [v1.0.4] - November 15 2018
 
-NEW FEATURES:
+New Features:
 
 * Added a new section for acm scripts. ([@TGWolf][])
 * Added a new section for dynamodb scripts. ([@TGWolf][])
@@ -70,16 +75,19 @@ NEW FEATURES:
 * Added a new script lambda/list-lambda-functions.py ([@TGWolf][])
 * Added a new script route53/list-route53-hosted-zones.py ([@TGWolf][])
 * Added a new script s3/list-s3-buckets.py. ([@TGWolf][])
+
+Style:
+
 * General tidy up of all scripts and internal docs / readme files. ([@TGWolf][])
 
-ENHANCEMENTS:
+Chores:
 
 * Updated the awesomebot_travis submodule. ([@TGWolf][])
 * Updated the python_travis submodule. ([@TGWolf][])
 
-## 1.0.3 (November 7, 2018)
+## [v1.0.3] - November 7 2018
 
-NEW FEATURES:
+New Features:
 
 * Added a new section for IAM scripts. ([@TGWolf][])
 * Added a new section for EC2 scripts. ([@TGWolf][])
@@ -88,16 +96,22 @@ NEW FEATURES:
 * Added a new script iam/list-roles.py script. ([@TGWolf][])
 * Added a new script iam/list-access-keys.py script. ([@TGWolf][])
 * Added a new script ec2/list-key-pairs.py script. ([@TGWolf][])
+
+Improvements:
+
 * Added better error detection to all scripts. ([@TGWolf][])
 
-## 1.0.2 (November 6, 2018)
+## [v1.0.2] - November 6 2018
 
-NEW FEATURES:
+New Features:
 
 * Addition of new script to list all RDS instances and details about them. ([@TGWolf][])
+
+Documentation:
+
 * README.md added to each script to give more detailed overview. ([@TGWolf][])
 
-ENHANCEMENTS:
+Improvements:
 
 * Tidy up of variable and function names to give them more meaning. ([@TGWolf][])
 * Added 'exit code' mode - sets the exit code to be the number of real upgrades available. ([@TGWolf][])
@@ -105,23 +119,21 @@ ENHANCEMENTS:
 * Remove type=str from command line parameters as this is the default for python. ([@TGWolf][])
 * Upgrade Available is now displayed as True/False instead of 1/0. ([@TGWolf][])
 
-BUG FIXES:
+Bug Fixes:
 
 * Bug found in check-for-solution-stack-upgrade.py due to unsafe assumption, change in the lookup logic. ([@TGWolf][])
 
-## 1.0.1 (November 6, 2018)
+## [v1.0.1] - November 6 2018
 
-ENHANCEMENTS:
+Improvements:
 
 * Improve the version checking so that a version is checked to ensure it is an actual upgrade and not just a different version. ([@TGWolf][])
 
-## 1.0.0 (November 6, 2018)
+## [v1.0.0] - November 6 2018
 
 * Initial Release ([@TGWolf][])
 
 [@TGWolf]: https://github.com/TGWolf
-
-[comment]: # (CHANGELOG Section Headers can be: ENHANCEMENTS, NEW FEATURES, BUG FIXES, NOTES, SECURITY, REMOVED, DEPRECATED)
 
 [unreleased]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.8...HEAD
 [v1.0.8]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.7...v1.0.8
