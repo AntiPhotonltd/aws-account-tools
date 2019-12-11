@@ -2,27 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [v1.0.8] 2019-12-19
+## [v1.0.8] (December 10 2019)
 
-### NEW FEATURES:
+#### NEW FEATURES:
 
 * Added a new script elasticbeanstalk/change-asg-health-check-type.py. ([@TGWolf][])
 * Added support for python 3.7 and 3.8 to the .travis.cfg file. ([@TGWolf][])
 
-### ENHANCEMENTS:
+#### ENHANCEMENTS:
 
 * Updated backup-ssm-to-s3.py as the 'day' was missing from the filename. ([@TGWolf][])
 
-### REMOVED:
+#### REMOVED:
 
 * Removed support for python 2.7 and 3.4 from .travis.cfg file. ([@TGWolf][])
 
-## [v1.0.7] 2018-09-21
+## [v1.0.7] (September 21 2019)
 
 ### NEW FEATURES:
 
