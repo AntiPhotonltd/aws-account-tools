@@ -1,9 +1,7 @@
-[![Build Status](https://img.shields.io/travis/AntiPhotonltd/aws-tools/master.svg)](https://travis-ci.org/AntiPhotonltd/aws-tools)
-[![Software License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
-[![Release](https://img.shields.io/github/release/AntiPhotonltd/aws-tools.svg)](https://github.com/AntiPhotonltd/aws-tools/releases/latest)
-[![Github commits (since latest release)](https://img.shields.io/github/commits-since/AntiPhotonltd/aws-tools/latest.svg)](https://github.com/AntiPhotonltd/aws-tools/commits)
-[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/AntiPhotonltd/aws-tools.svg)](https://github.com/AntiPhotonltd/aws-tools)
-[![GitHub contributors](https://img.shields.io/github/contributors/AntiPhotonltd/aws-tools.svg)](https://github.com/AntiPhotonltd/aws-tools)
+[![Build Status](https://img.shields.io/travis/AntiPhotonltd/aws-tool/master?color=blueviolet&style=for-the-badge&logo=travis)](https://travis-ci.org/AntiPhotonltd/aws-tool)
+[![Release](https://img.shields.io/github/release/AntiPhotonltd/aws-tool?color=blueviolet&style=for-the-badge&logo=github)](https://github.com/AntiPhotonltd/aws-tool/releases/latest)
+[![Github commits (since latest release)](https://img.shields.io/github/commits-since/AntiPhotonltd/aws-tool/latest?color=blueviolet&style=for-the-badge&logo=github)](https://github.com/AntiPhotonltd/aws-tool/commits)
+[![Software License](https://img.shields.io/badge/license-MIT-blueviolet?style=for-the-badge)](LICENSE.md)
 
 AWS Tools
 =========
