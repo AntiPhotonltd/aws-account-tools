@@ -4,9 +4,15 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-For further info see our [changelosg](https://github.com/AntiPhotonltd/changelogs) guide.
+For further info see our [changelogs](https://github.com/AntiPhotonltd/changelogs) guide.
 
 ## [Unreleased]
+
+## [v1.0.9] - December 10 2019
+
+Documentation:
+
+* A complete review and rework of the ChangeLog. ([@TGWolf][])
 
 ## [v1.0.8] - December 10 2019
 
@@ -135,7 +141,8 @@ Improvements:
 
 [@TGWolf]: https://github.com/TGWolf
 
-[unreleased]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.8...HEAD
+[unreleased]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.9...HEAD
+[v1.0.9]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.8...v1.0.9
 [v1.0.8]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.7...v1.0.8
 [v1.0.7]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.6...v1.0.7
 [v1.0.6]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.5...v1.0.6
