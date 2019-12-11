@@ -101,7 +101,7 @@ matrix:
   - language: ruby
     name: "Link Checking (rvm 2.6)"
     rvm: 2.6
-    env: WHITELIST="https://github.com/AntiPhotonltd/aws-tools/compare"
+    env: WHITELIST="https://github.com/TGWolf,https://github.com/AntiPhotonltd"
     before_install:
       - mkdir travis
       - git clone https://github.com/TravisToolbox/awesomebot-travis.git travis/awesomebot
