@@ -13,6 +13,10 @@ Documentation:
 * Fix the date for the 1.0.9 release. ([@TGWolf][])
 * Updated the badges ion the README to be a little more on brand and relevant. ([@TGWolf][])
 
+Chores:
+
+* Updated requirements.txt due to pur effors. ([@TGWolf][])
+
 ## [v1.0.9] - December 11 2019
 
 Documentation:
