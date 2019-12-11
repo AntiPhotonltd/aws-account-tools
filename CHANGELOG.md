@@ -14,6 +14,10 @@ Documentation:
 
 * A complete review and rework of the ChangeLog. ([@TGWolf][])
 
+Chores:
+
+* Added a whitelist entry to ensure the link checker doesnt file on the changelog. ([@TGWolf][])
+
 ## [v1.0.8] - December 10 2019
 
 New Features:
