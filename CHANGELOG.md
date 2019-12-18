@@ -8,6 +8,10 @@ For further info see our [changelogs](https://github.com/AntiPhotonltd/changelog
 
 ## [Unreleased]
 
+Improvements:
+
+* Added a requirements.txt to each dir so that each script can be extracted and used independanty. ([@TGWolf][])
+
 ## [v1.0.10] - December 18 2019
 
 Changes:
