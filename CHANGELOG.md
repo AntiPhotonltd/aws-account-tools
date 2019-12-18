@@ -1,4 +1,4 @@
-# AWS Tools Changelog
+# AWS Account Tools Changelog
 
 All notable changes to this project will be documented in this file.
 
@@ -8,9 +8,15 @@ For further info see our [changelogs](https://github.com/AntiPhotonltd/changelog
 
 ## [Unreleased]
 
+## [v1.0.10] - December 18 2019
+
+Changes:
+
+* Renamed to repo from aws-tools to aws-account-tools so I can bring other tools together into a new aws-info-tools. ([@TGWolf][])
+
 Documentation:
 
-* Fix the date for the 1.0.9 release. ([@TGWolf][])
+* Fix the date of the 1.0.9 release in the Changelog. ([@TGWolf][])
 * Updated the badges ion the README to be a little more on brand and relevant. ([@TGWolf][])
 
 Chores:
@@ -154,15 +160,16 @@ Improvements:
 
 [@TGWolf]: https://github.com/TGWolf
 
-[unreleased]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.9...HEAD
-[v1.0.9]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.8...v1.0.9
-[v1.0.8]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.7...v1.0.8
-[v1.0.7]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.6...v1.0.7
-[v1.0.6]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.5...v1.0.6
-[v1.0.5]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.4...v1.0.5
-[v1.0.4]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.3...v1.0.4
-[v1.0.3]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.2...v1.0.3
-[v1.0.2]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/AntiPhotonltd/aws-tools/compare/v1.0.0...v1.0.1
-[v1.0.0]: https://github.com/AntiPhotonltd/aws-tools/releases/tag/v1.0.0
+[unreleased]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.10...HEAD
+[v1.0.10]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.9...v1.0.10
+[v1.0.9]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.8...v1.0.9
+[v1.0.8]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.7...v1.0.8
+[v1.0.7]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.6...v1.0.7
+[v1.0.6]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.5...v1.0.6
+[v1.0.5]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.4...v1.0.5
+[v1.0.4]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.3...v1.0.4
+[v1.0.3]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.2...v1.0.3
+[v1.0.2]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/AntiPhotonltd/aws-account-tools/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/AntiPhotonltd/aws-account-tools/releases/tag/v1.0.0
 
