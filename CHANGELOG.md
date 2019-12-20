@@ -15,6 +15,7 @@ Documentation:
 Improvements:
 
 * Added a requirements.txt to each dir so that each script can be extracted and used independanty. ([@TGWolf][])
+* Added an update-pur script to ensure updates are simple.  ([@TGWolf][])
 
 ## [v1.0.10] - December 18 2019
 

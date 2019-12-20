@@ -1,5 +1,5 @@
 requests==2.22.0
 termcolor==1.1.0
-botocore==1.13.41
-boto3==1.10.41
+botocore==1.13.43
+boto3==1.10.43
 dicttoxml==1.7.4

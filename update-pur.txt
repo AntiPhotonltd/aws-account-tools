@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+find . -name requirements.txt | while read -r file
+do
+    DIR=$(dirname "${file}")
+    echo "Updating ${DIR}"
+    cd "${DIR}"
+    pur
+    cd -
+done
