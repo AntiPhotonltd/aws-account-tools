@@ -8,6 +8,10 @@ For further info see our [changelogs](https://github.com/AntiPhotonltd/changelog
 
 ## [Unreleased]
 
+Documentation:
+
+* Updated the badges on the readme file. ([@TGWolf][])
+
 Improvements:
 
 * Added a requirements.txt to each dir so that each script can be extracted and used independanty. ([@TGWolf][])
